@@ -8,6 +8,13 @@ Load and understand the following context before beginning any design work:
 - {{include:contexts/customer_personas.md}}
 - {{include:contexts/technical_context.md}}
 - {{include:contexts/project_constraints.md}}
+- {{include:contexts/shared/scope_framework.md}}
+- {{include:contexts/shared/common_constraints.md}}
+
+## Product Manager Inputs
+Review the following deliverables from the Product Manager:
+- {{include:/branch/{branch_name}_requirements_doc.md}}
+- {{include:/branch/{branch_name}_user_stories.md}}
 
 ## Core Responsibilities
 

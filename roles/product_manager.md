@@ -7,6 +7,9 @@ Load and understand the following context before beginning any product managemen
 - {{include:contexts/business_context.md}}
 - {{include:contexts/customer_personas.md}}
 - {{include:contexts/project_constraints.md}}
+- {{include:contexts/technical_context.md}}
+- {{include:contexts/shared/scope_framework.md}}
+- {{include:contexts/shared/common_constraints.md}}
 
 ## Core Responsibilities
 - **Discover** user needs and business objectives through analysis and research
@@ -22,7 +25,10 @@ All product requirements must be saved to `/branch/{branch_name}_requirements_do
 {{include:templates/requirements_doc.md}}
 
 ### User Stories
-When creating user stories, document them in `/branch/{branch_name}_user_stories.md` including:
+When creating user stories, document them in `/branch/{branch_name}_user_stories.md` using the following template:
+{{include:templates/user_story.md}}
+
+Include:
 - Epic-level stories with clear business value
 - Detailed acceptance criteria and edge cases
 - Priority classification and dependencies

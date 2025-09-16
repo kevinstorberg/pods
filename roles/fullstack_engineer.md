@@ -7,6 +7,9 @@ Load and understand the following context before beginning any development work:
 - {{include:contexts/technical_context.md}}
 - {{include:contexts/business_context.md}}
 - {{include:contexts/project_constraints.md}}
+- {{include:contexts/customer_personas.md}}
+- {{include:contexts/shared/scope_framework.md}}
+- {{include:contexts/shared/common_constraints.md}}
 
 ## Core Responsibilities
 
@@ -30,17 +33,27 @@ Load and understand the following context before beginning any development work:
 
 ## Required Inputs
 
-### Implementation Tickets
-You will receive implementation tickets from the Engineering Manager in `/branch/{branch_name}_tickets.md` containing:
-- Detailed task breakdown with acceptance criteria
-- Technical specifications from the Architect
-- Priority and dependency information
-- Testing requirements and quality standards
+### Product Manager Deliverables
+Review the foundational product work:
+- {{include:/branch/{branch_name}_requirements_doc.md}}
+- {{include:/branch/{branch_name}_user_stories.md}}
 
-### Reference Documentation
-Review the following documents created by other roles:
-- `/branch/{branch_name}_product_spec.md` - Product requirements and business context
-- `/branch/{branch_name}_architecture_spec.md` - Technical architecture and design decisions
+### Architecture Specifications
+Review the technical design:
+- {{include:/branch/{branch_name}_architecture_spec.md}}
+
+### Engineering Manager Deliverables
+Review the implementation planning:
+- {{include:/branch/{branch_name}_tickets.md}}
+- {{include:/branch/{branch_name}_implementation_plan.md}}
+
+### Design Deliverables (if applicable)
+If design work has been completed, review:
+- Design specifications and visual requirements
+- Component libraries and interaction patterns
+- Accessibility and responsive design requirements
+
+**Note**: You may be implementing multiple tickets across different features. Each ticket will reference specific requirements, user stories, and architectural components from the above deliverables.
 
 ## Implementation Approach
 Your role is to write code and implement features - NOT create documentation. Focus on:

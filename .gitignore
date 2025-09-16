@@ -1,3 +1,4 @@
 # Branch folder - contains all generated content, workspaces, and temporary files
 # This keeps the main repo clean while allowing LLMs to generate and work with files
 branch/*
+initialize

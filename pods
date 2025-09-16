@@ -1,0 +1,87 @@
+#!/bin/bash
+
+# PODs - AI Development Framework
+# Usage: pods <role-name>
+
+set -e  # Exit on error
+if [ $# -eq 0 ]; then
+    echo "Usage: pods <role-name>"
+    exit 1
+fi
+
+ROLE_NAME=$1
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+ROLE_FILE="${SCRIPT_DIR}/roles/${ROLE_NAME}.md"
+
+# Validate role exists
+if [ ! -f "$ROLE_FILE" ]; then
+    echo "Error: Role '$ROLE_NAME' not found."
+    echo "Expected file: $ROLE_FILE"
+    echo ""
+    echo "Available roles:"
+    for role_file in "${SCRIPT_DIR}/roles"/*.md; do
+        if [ -f "$role_file" ]; then
+            role=$(basename "$role_file" .md)
+            echo "  $role"
+        fi
+    done
+    exit 1
+fi
+
+# Load configuration
+CONFIG_FILE="${SCRIPT_DIR}/config/pods.conf"
+
+if [ -f "$CONFIG_FILE" ]; then
+    # Source the config file to load AI_EDITOR variable
+    source "$CONFIG_FILE"
+else
+    echo "Error: Config file not found at $CONFIG_FILE"
+    echo "Please ensure the config file exists with AI_EDITOR setting."
+    exit 1
+fi
+
+# Change to the PODs directory so AI has access to all files
+cd "$SCRIPT_DIR"
+
+echo "🚀 Launching $AI_EDITOR with PODs framework..."
+echo "📁 Working directory: $SCRIPT_DIR"
+echo "👤 Role: $ROLE_NAME"
+echo ""
+
+# Create the role assumption command
+ROLE_COMMAND="Please read ./roles/${ROLE_NAME}.md and assume that role. Then introduce yourself."
+
+# Launch AI Editor with the role command as an argument
+if command -v "$AI_EDITOR" &> /dev/null; then
+    case "$AI_EDITOR" in
+        "claude")
+            # Use Claude Code's task argument feature
+            "$AI_EDITOR" "$ROLE_COMMAND"
+            ;;
+        "gemini")
+            # Use Gemini CLI's -p flag for prompt
+            "$AI_EDITOR" -p "$ROLE_COMMAND"
+            ;;
+        "cursor-agent")
+            # Use Cursor CLI's prompt argument
+            "$AI_EDITOR" "$ROLE_COMMAND"
+            ;;
+        *)
+            # For unsupported editors, launch normally and show manual instructions
+            "$AI_EDITOR"
+            echo ""
+            echo "⚠️  Your AI editor doesn't support automatic role loading."
+            echo "Please manually enter this command:"
+            echo "\"$ROLE_COMMAND\""
+            ;;
+    esac
+else
+    echo "Error: $AI_EDITOR command not found."
+    echo "Please install $AI_EDITOR or ensure it's in your PATH."
+    echo "You can also edit config/pods.conf to use a different AI editor."
+    echo ""
+    echo "Alternatively, you can manually:"
+    echo "1. Start your AI coding tool in this directory: $SCRIPT_DIR"
+    echo "2. Ask it to read and assume the role from: ./roles/${ROLE_NAME}.md"
+    exit 1
+fi

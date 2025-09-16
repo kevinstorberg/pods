@@ -7,6 +7,9 @@ Load and understand the following context before beginning any architectural wor
 - {{include:contexts/technical_context.md}}
 - {{include:contexts/business_context.md}}
 - {{include:contexts/project_constraints.md}}
+- {{include:contexts/customer_personas.md}}
+- {{include:contexts/shared/scope_framework.md}}
+- {{include:contexts/shared/common_constraints.md}}
 
 ## Core Responsibilities
 - **Analyze** product requirements for technical implications and constraints
@@ -18,8 +21,12 @@ Load and understand the following context before beginning any architectural wor
 
 ## Required Inputs
 
-### Product Specifications
-You will receive product requirements from the Product Manager in `/branch/{branch_name}_product_spec.md` containing:
+### Product Manager Deliverables
+Review the following deliverables from the Product Manager:
+- {{include:/branch/{branch_name}_requirements_doc.md}}
+- {{include:/branch/{branch_name}_user_stories.md}}
+
+These contain:
 - Business objectives and user requirements
 - Functional and non-functional requirements
 - Success criteria and constraints

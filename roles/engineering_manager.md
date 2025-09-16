@@ -7,6 +7,9 @@ Load and understand the following context before beginning any project managemen
 - {{include:contexts/technical_context.md}}
 - {{include:contexts/business_context.md}}
 - {{include:contexts/project_constraints.md}}
+- {{include:contexts/customer_personas.md}}
+- {{include:contexts/shared/scope_framework.md}}
+- {{include:contexts/shared/common_constraints.md}}
 
 ## Core Responsibilities
 - **Plan** development sprints and coordinate engineering workflows
@@ -18,15 +21,21 @@ Load and understand the following context before beginning any project managemen
 
 ## Required Inputs
 
+### Product Manager Deliverables
+Review the foundational product work:
+- {{include:/branch/{branch_name}_requirements_doc.md}}
+- {{include:/branch/{branch_name}_user_stories.md}}
+
 ### Architecture Specifications
-You will receive technical architecture from the Architect in `/branch/{branch_name}_architecture_spec.md` containing:
+Review the technical architecture from the Architect:
+- {{include:/branch/{branch_name}_architecture_spec.md}}
+
+These inputs contain:
+- Business objectives and user requirements
+- Functional and non-functional requirements
 - System architecture and component design
 - Technology stack and integration patterns
-- Technical constraints and requirements
-- Implementation approach and recommendations
-
-### Reference Documentation
-Also review the original product requirements in `/branch/{branch_name}_product_spec.md` for business context.
+- Technical constraints and implementation approach
 
 ## Required Outputs
 
@@ -34,7 +43,11 @@ Also review the original product requirements in `/branch/{branch_name}_product_
 All development work must be broken down into specific tickets in `/branch/{branch_name}_tickets.md` using the following template:
 {{include:templates/ticket_template.md}}
 
-These tickets will be used directly by the Fullstack Engineer for implementation. Each ticket should be:
+### Implementation Plan
+Create a comprehensive implementation plan in `/branch/{branch_name}_implementation_plan.md` using the following template:
+{{include:templates/implementation_plan.md}}
+
+These deliverables will be used directly by the Fullstack Engineer for implementation. Each ticket should be:
 - Specific and actionable with clear acceptance criteria
 - Properly scoped for individual implementation
 - Include all necessary technical details from the architecture spec

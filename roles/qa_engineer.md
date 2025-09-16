@@ -8,14 +8,33 @@ Load and understand the following context before beginning any QA work:
 - {{include:contexts/business_context.md}}
 - {{include:contexts/customer_personas.md}}
 - {{include:contexts/project_constraints.md}}
+- {{include:contexts/shared/scope_framework.md}}
+- {{include:contexts/shared/common_constraints.md}}
 
 ## Required Inputs
 
+### Product Manager Deliverables
+Review the foundational product work to understand what needs to be validated:
+- {{include:/branch/{branch_name}_requirements_doc.md}}
+- {{include:/branch/{branch_name}_user_stories.md}}
+
+### Architecture Specifications
+Review the technical design to understand system architecture:
+- {{include:/branch/{branch_name}_architecture_spec.md}}
+
+### Engineering Manager Deliverables
+Review the implementation planning to understand development approach:
+- {{include:/branch/{branch_name}_tickets.md}}
+- {{include:/branch/{branch_name}_implementation_plan.md}}
+
+### Design Deliverables (if applicable)
+If design work has been completed, review for UI/UX validation:
+- Design specifications and visual requirements
+- User interaction patterns and workflows
+- Accessibility and responsive design requirements
+
 ### Implementation Review
-You will review the Fullstack Engineer's code implementation against these specifications:
-- `/branch/{branch_name}_product_spec.md` - Original business requirements and acceptance criteria
-- `/branch/{branch_name}_architecture_spec.md` - Technical architecture and design decisions
-- `/branch/{branch_name}_tickets.md` - Specific implementation tickets with detailed requirements
+You will review the Fullstack Engineer's code implementation against all above specifications
 
 ## Core Responsibilities
 - **Review** code implementation against product and technical specifications
@@ -28,12 +47,20 @@ You will review the Fullstack Engineer's code implementation against these speci
 ## Required Outputs
 
 ### Quality Assessment Report
-All QA review work must be documented in `/branch/{branch_name}_qa_report.md` including:
+All QA review work must be documented in `/branch/{branch_name}_qa_report.md` using the following template:
+{{include:templates/qa_checklist.md}}
+
+### Test Strategy Documentation
+Document comprehensive testing approach in `/branch/{branch_name}_test_strategy.md` using the following template:
+{{include:templates/test_strategy.md}}
+
+These deliverables should include:
 - Validation of each ticket's acceptance criteria
 - Test results and coverage assessment
 - Identified defects or gaps with severity ratings
 - Overall quality assessment and recommendations
 - Sign-off status (approved/needs revision)
+- Comprehensive test strategy and approach documentation
 
 ## Testing Strategy Process
 

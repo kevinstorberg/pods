@@ -4,7 +4,7 @@ A comprehensive AI development framework that functions like a complete Agile So
 
 ## 🎯 Purpose
 
-PODs transforms how software is built by providing a structured framework where AI agents collaborate systematically across the entire development lifecycle. Each agent embodies the expertise and responsibilities of key software development roles, enabling teams to:
+PODs transforms how software is built by providing a structured framework where AI agents collaborate across the entire development lifecycle. Each agent embodies the expertise and responsibilities of key software development roles, enabling teams to:
 
 - **Scale development capacity** with AI-powered professional roles
 - **Maintain consistent quality** through structured workflows and handoffs
@@ -57,64 +57,93 @@ Product Manager → Architect → Engineering Manager → Fullstack Engineer →
 
 ## 🚀 Getting Started
 
-### 1. Initialize Your Project
+### 1. Set Up PODs Framework
 
 ```bash
+# Clone the PODs framework to your project
 git clone https://github.com/your-org/pods.git
-cd your-project-directory
-# Run initialization script (coming soon)
-./init-project.sh
+cd pods
 ```
 
-### 2. Configure Project Context
+### 2. Configure Your AI Editor
 
-The initialization process will:
-- Auto-detect your technology stack
-- Prompt for business context and constraints
-- Generate project-specific configuration files
-- Set up the `/branch` workspace for generated content
-
-### 3. Invoke Roles Sequentially
-
-Start with the Product Manager and work through the role chain:
+Edit the configuration file to set your preferred AI coding tool:
 
 ```bash
-# Example role invocation (implementation details coming soon)
-pods invoke product-manager --feature "user-authentication"
-pods invoke architect --feature "user-authentication"
-pods invoke engineering-manager --feature "user-authentication"
-pods invoke fullstack-engineer --feature "user-authentication"
-pods invoke qa-engineer --feature "user-authentication"
+# Edit config/pods.conf
+# Set AI_EDITOR to: claude, gemini, or cursor-agent
+```
+
+### 3. Initialize Project Context
+
+Run the admin role to configure your project context:
+
+```bash
+# Make the script executable (one-time setup)
+chmod +x pods
+
+# Launch admin role to configure project
+./pods admin
+```
+
+The admin will:
+- Auto-detect your technology stack
+- Ask smart questions about your business context
+- Configure all project context files
+- Prepare the framework for other roles
+
+### 4. Use Roles Sequentially
+
+Work through the role chain for your feature development:
+
+```bash
+./pods product-manager
+./pods architect
+./pods engineering-manager
+./pods fullstack-engineer
+./pods qa-engineer
 ```
 
 ## 📁 Repository Structure
 
 ```
 pods/
-├── roles/                    # AI role definitions
-│   ├── shared/              # Common role components (DRY)
+├── pods                     # Main executable script
+├── config/
+│   └── pods.conf           # AI editor configuration
+├── roles/                   # AI role definitions
+│   ├── shared/             # Common role components
+│   │   ├── quality_standards.md
+│   │   ├── handoff_requirements.md
+│   │   ├── example_indicators.md
+│   │   └── system_assessment_process.md
+│   ├── admin.md
 │   ├── product_manager.md
 │   ├── architect.md
 │   ├── engineering_manager.md
 │   ├── fullstack_engineer.md
 │   ├── qa_engineer.md
-│   ├── designer.md
-│   └── admin.md
-├── contexts/                # Project context templates
-│   ├── shared/              # Common context components
+│   └── designer.md
+├── contexts/               # Project context templates
+│   ├── shared/            # Framework components
+│   │   ├── scope_framework.md
+│   │   ├── common_constraints.md
+│   │   └── technology_categories.md
 │   ├── business_context.md
 │   ├── technical_context.md
 │   ├── customer_personas.md
 │   └── project_constraints.md
-├── templates/               # Output format templates
-│   ├── shared/              # Common template components
+├── templates/             # Output format templates
+│   ├── shared/           # Common template components
 │   ├── requirements_doc.md
 │   ├── architecture_spec.md
+│   ├── implementation_plan.md
 │   ├── ticket_template.md
+│   ├── user_story.md
 │   ├── design_task.md
-│   └── qa_checklist.md
-├── config/                  # Project-specific configurations
-└── branch/                  # Generated content workspace (git-ignored)
+│   ├── qa_checklist.md
+│   └── test_strategy.md
+└── branch/               # Generated content workspace (git-ignored)
 ```
 
 ## 🎨 Key Features
@@ -162,58 +191,7 @@ cd pods
 2. **Follow Patterns**: Maintain consistency with existing role and template structures
 3. **Test Thoroughly**: Validate changes across different project types
 4. **Document Changes**: Update relevant documentation and examples
-
-#### Areas for Contribution
-- **New Roles**: DevOps Engineer, Security Engineer, Data Engineer, etc.
-- **Enhanced Templates**: Industry-specific templates and workflows
-- **Context Modules**: Auto-detection for new frameworks and technologies
-- **Integration Tools**: CLI tools, IDE plugins, CI/CD integrations
-- **Documentation**: Examples, tutorials, and best practices
-
-### 📝 Documentation Contributions
-- Improve role definitions and workflow documentation
-- Add examples and case studies
-- Create tutorials for specific use cases
-- Translate documentation for international accessibility
-
-### 🏗️ Architecture Improvements
-- Enhance the DRY component system
-- Improve template composition and variable substitution
-- Optimize role handoff and workflow orchestration
-- Develop better project initialization and auto-detection
-
-## 📋 Development Roadmap
-
-### Phase 1: Core Framework ✅
-- [x] Role definitions with DRY architecture
-- [x] Template system with shared components
-- [x] Context injection framework
-- [x] Sequential workflow design
-
-### Phase 2: Implementation (Current)
-- [ ] Interactive project initialization
-- [ ] Role invocation CLI tool
-- [ ] Template processing engine
-- [ ] End-to-end workflow validation
-
-### Phase 3: Enhancement
-- [ ] Advanced role orchestration
-- [ ] Real-time collaboration features
-- [ ] IDE integrations and plugins
-- [ ] Performance optimization and scaling
-
-### Phase 4: Ecosystem
-- [ ] Community role marketplace
-- [ ] Industry-specific frameworks
-- [ ] Enterprise features and support
-- [ ] AI model optimization
-
-## 📖 Learn More
-
-- **Documentation**: [Coming Soon] - Comprehensive guides and API reference
-- **Examples**: Check `/examples` folder for real-world use cases
-- **Community**: Join our Discord for discussions and support
-- **Blog**: Follow our development journey and best practices
+5. **Submit Pull Request**: Create a pull request with clear description of changes and testing performed
 
 ## 📄 License
 
