@@ -3,9 +3,10 @@
 ## Story Information
 - **Story ID**: {{STORY_ID}}
 - **Epic**: {{EPIC_NAME}}
-- **Priority**: {{PRIORITY}} (Critical, High, Medium, Low)
 - **Estimate**: {{STORY_POINTS}} story points
 - **Sprint**: {{SPRINT_NUMBER}}
+
+{{include:templates/shared/priority_scale.md}}
 
 ## User Story
 **As a** {{USER_ROLE}},
