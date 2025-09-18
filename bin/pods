@@ -10,7 +10,7 @@ if [ $# -eq 0 ]; then
 fi
 
 ROLE_NAME=$1
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 ROLE_FILE="${SCRIPT_DIR}/roles/${ROLE_NAME}.md"
 
 # Validate role exists
@@ -29,15 +29,27 @@ if [ ! -f "$ROLE_FILE" ]; then
 fi
 
 # Load configuration
-CONFIG_FILE="${SCRIPT_DIR}/config/pods.conf"
+CONFIG_FILE="${SCRIPT_DIR}/config/roles.conf"
 
 if [ -f "$CONFIG_FILE" ]; then
-    # Source the config file to load AI_EDITOR variable
+    # Source the config file to load DEFAULT_AI_ASSISTANT variable
     source "$CONFIG_FILE"
 else
     echo "Error: Config file not found at $CONFIG_FILE"
-    echo "Please ensure the config file exists with AI_EDITOR setting."
+    echo "Please ensure the config file exists with DEFAULT_AI_ASSISTANT setting."
     exit 1
+fi
+
+# Check for role-specific AI assistant configuration
+ROLE_VAR="$(echo "$ROLE_NAME" | tr '[:lower:]' '[:upper:]' | tr '-' '_')"
+ROLE_ASSISTANT="${!ROLE_VAR}"
+
+if [ -n "$ROLE_ASSISTANT" ]; then
+    AI_EDITOR="$ROLE_ASSISTANT"
+    echo "Using role-specific AI assistant: $AI_EDITOR"
+else
+    AI_EDITOR="$DEFAULT_AI_ASSISTANT"
+    echo "Using default AI assistant: $AI_EDITOR"
 fi
 
 # Change to the PODs directory so AI has access to all files
@@ -59,8 +71,8 @@ if command -v "$AI_EDITOR" &> /dev/null; then
             "$AI_EDITOR" "$ROLE_COMMAND"
             ;;
         "gemini")
-            # Use Gemini CLI's -p flag for prompt
-            "$AI_EDITOR" -p "$ROLE_COMMAND"
+            # Use Gemini CLI's -i flag for interactive prompt
+            "$AI_EDITOR" -i "$ROLE_COMMAND"
             ;;
         "cursor-agent")
             # Use Cursor CLI's prompt argument

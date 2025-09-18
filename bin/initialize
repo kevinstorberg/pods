@@ -1,0 +1,23 @@
+#!/bin/bash
+
+# PODs Initialization Script
+# This script starts project setup with the Admin role
+
+set -e
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PODS_SCRIPT="$SCRIPT_DIR/pods"
+
+echo "🚀 Starting PODs project initialization..."
+echo ""
+echo "The Admin will help you configure:"
+echo "  • Business context and company details"
+echo "  • Technical stack and constraints"
+echo "  • Customer personas and requirements"
+echo "  • Project scope and limitations"
+echo ""
+echo "Once your AI editor starts, the Admin will guide you through setup."
+echo ""
+
+# Launch the admin role to configure the project
+exec "$PODS_SCRIPT" admin

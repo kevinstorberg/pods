@@ -65,13 +65,23 @@ git clone https://github.com/your-org/pods.git
 cd pods
 ```
 
-### 2. Configure Your AI Editor
+### 2. Configure AI Assistants
 
-Edit the configuration file to set your preferred AI coding tool:
+Edit the configuration file to set your preferred AI coding tools:
 
 ```bash
-# Edit config/pods.conf
-# Set AI_EDITOR to: claude, gemini, or cursor-agent
+# Edit config/roles.conf
+# Set DEFAULT_AI_ASSISTANT and role-specific overrides
+```
+
+Example configuration:
+```bash
+# Default for all roles
+DEFAULT_AI_ASSISTANT="claude"
+
+# Use different assistants for specific roles
+FULLSTACK_ENGINEER="cursor-agent"
+ENGINEERING_MANAGER="gemini"
 ```
 
 ### 3. Initialize Project Context
@@ -79,11 +89,14 @@ Edit the configuration file to set your preferred AI coding tool:
 Run the admin role to configure your project context:
 
 ```bash
-# Make the script executable (one-time setup)
-chmod +x pods
+# Make scripts executable (one-time setup)
+chmod +x bin/pods bin/initialize
 
-# Launch admin role to configure project
-./pods admin
+# Option 1: Use initialize script (recommended)
+bin/initialize
+
+# Option 2: Launch admin role directly
+bin/pods admin
 ```
 
 The admin will:
@@ -97,20 +110,22 @@ The admin will:
 Work through the role chain for your feature development:
 
 ```bash
-./pods product-manager
-./pods architect
-./pods engineering-manager
-./pods fullstack-engineer
-./pods qa-engineer
+bin/pods product-manager
+bin/pods architect
+bin/pods engineering-manager
+bin/pods fullstack-engineer
+bin/pods qa-engineer
 ```
 
 ## 📁 Repository Structure
 
 ```
 pods/
-├── pods                     # Main executable script
+├── bin/                     # Executable scripts
+│   ├── pods                # Main role launcher
+│   └── initialize          # Project setup script
 ├── config/
-│   └── pods.conf           # AI editor configuration
+│   └── roles.conf          # Role and AI assistant configuration
 ├── roles/                   # AI role definitions
 │   ├── shared/             # Common role components
 │   │   ├── quality_standards.md
@@ -183,7 +198,11 @@ We welcome contributions to make PODs more powerful and accessible! Here's how y
 ```bash
 git clone https://github.com/your-org/pods.git
 cd pods
-# Set up development environment (details coming soon)
+# Make scripts executable
+chmod +x bin/pods bin/initialize
+# Configure roles (edit config/roles.conf as needed)
+# Test the framework
+bin/pods admin
 ```
 
 #### Contribution Guidelines
