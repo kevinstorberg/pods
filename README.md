@@ -152,19 +152,18 @@ The admin will:
 Work through the role chain for your feature development:
 
 ```bash
-# Full names
+# Basic usage
 bin/pods product_manager
-bin/pods architect
-bin/pods engineering_manager
-bin/pods fullstack_engineer
-bin/pods qa_engineer
+bin/pods pm                    # Abbreviation
 
-# Or use abbreviations
-bin/pods pm
-bin/pods ar
-bin/pods em
-bin/pods fe
-bin/pods qe
+# Advanced options
+bin/pods fe --t               # Open in new terminal tab
+bin/pods ar --a gemini        # Override AI assistant
+bin/pods pm --t --a claude    # New tab + assistant override
+
+# Git workflow integration
+bin/pods g tree feature-auth  # Create worktree + branch
+source <(bin/pods g tree auth) # Create worktree + switch directory
 ```
 
 ### For Existing Projects
@@ -212,7 +211,8 @@ The Admin will automatically analyze your existing codebase in the parent direct
 pods/
 ├── bin/                     # Executable scripts
 │   ├── initialize          # Project setup script
-│   ├── pods                # Main role launcher
+│   ├── pods                # Main PODs command with subcommands
+│   ├── setup-shell         # Shell function setup for directory changing
 │   └── test               # Test suite runner
 ├── branch/                 # Generated content workspace (git-ignored)
 ├── config/
@@ -252,6 +252,12 @@ pods/
 │   ├── test_strategy.md
 │   ├── ticket_template.md
 │   └── user_story.md
+├── lib/                    # Script libraries
+│   ├── config-parser.sh   # JSONC configuration parsing
+│   ├── git-commands.sh    # Git workflow operations
+│   ├── role-launcher.sh   # Role launching with arguments
+│   ├── shell-function.sh  # Shell function for directory changing
+│   └── terminal-utils.sh  # Terminal tab management
 └── tests/                 # Test suite
     └── test-roles.sh     # Role loading tests
 ```

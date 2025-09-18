@@ -16,4 +16,10 @@ echo "Starting role loading tests..."
 "$SCRIPT_DIR/tests/test-roles.sh"
 
 echo ""
+
+# Run role arguments tests
+echo "Starting role arguments tests..."
+"$SCRIPT_DIR/tests/test-role-args.sh"
+
+echo ""
 echo "✅ PODs test suite completed!"
