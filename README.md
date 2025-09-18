@@ -24,35 +24,36 @@ Product Manager → Architect → Engineering Manager → Fullstack Engineer →
 #### 1. **Product Manager**
 - Analyzes requirements and defines product specifications
 - Creates comprehensive business requirements and user stories
-- **Output**: `/branch/{feature}_product_spec.md`
+- **Output**: `/branch/requirements_doc.md` and `/branch/user_stories.md`
 
 #### 2. **Architect**
 - Reviews product specifications and designs technical architecture
 - Defines system design, technology choices, and implementation approach
-- **Input**: Product specifications from PM
-- **Output**: `/branch/{feature}_architecture_spec.md`
+- **Input**: `/branch/requirements_doc.md` and `/branch/user_stories.md` from Product Manager
+- **Output**: `/branch/architecture_spec.md`
 
 #### 3. **Engineering Manager**
 - Breaks down architecture into actionable development tickets
 - Plans implementation phases and coordinates development work
-- **Input**: Architecture specifications from Architect
-- **Output**: `/branch/{feature}_tickets.md`
+- **Input**: `/branch/architecture_spec.md` from Architect
+- **Output**: `/branch/tickets.md` and `/branch/implementation_plan.md`
 
 #### 4. **Fullstack Engineer**
 - Implements features based on detailed tickets and specifications
 - Writes code following architectural guidelines and quality standards
-- **Input**: Implementation tickets from Engineering Manager
+- **Input**: `/branch/tickets.md` and `/branch/implementation_plan.md` from Engineering Manager
 - **Output**: Working code implementation
 
 #### 5. **QA Engineer**
 - Reviews implementation against all specifications and requirements
 - Validates quality, tests functionality, and provides final approval
-- **Input**: Code implementation + all previous specifications
-- **Output**: `/branch/{feature}_qa_report.md`
+- **Input**: Code implementation + all previous deliverables from upstream roles
+- **Output**: `/branch/qa_report.md`
 
 ### Supporting Roles
 
 - **Designer**: Creates user experience designs and design systems
+- **Output**: `/branch/design_task.md` and `/branch/design_system.md`
 - **Admin**: Handles project initialization and configuration
 
 ## 🚀 Getting Started
@@ -146,7 +147,7 @@ The admin will:
 - Configure all project context files
 - Prepare the framework for other roles
 
-### 4. Use Roles Sequentially
+### 5. Use Roles Sequentially
 
 Work through the role chain for your feature development:
 
@@ -220,11 +221,8 @@ pods/
 │   └── project.json       # Project directory configuration
 ├── contexts/               # Project context templates
 │   ├── shared/            # Framework components
-│   │   ├── common_constraints.md
 │   │   ├── mcp_servers.md
-│   │   ├── project_config.md
-│   │   ├── scope_framework.md
-│   │   └── technology_categories.md
+│   │   └── project_config.md
 │   ├── business_context.md
 │   ├── customer_personas.md
 │   ├── project_constraints.md
@@ -270,7 +268,7 @@ pods/
 
 ### Clean Workspace Management
 - **Git-Ignored Generation**: All AI outputs go to `/branch` folder
-- **Session Isolation**: Timestamped workspaces for parallel feature development
+- **Simple Workspace**: Clean separation between framework and generated content
 - **Version Control Friendly**: Framework stays clean, generated content stays separate
 
 ## 🤝 Contributing
@@ -300,7 +298,7 @@ chmod +x bin/pods bin/initialize
 # Configure assistants (edit config/assistants.json as needed)
 # Configure MCP servers (edit config/mcp.json as needed)
 # Test the framework
-bin/pods admin
+bin/test
 ```
 
 #### Contribution Guidelines

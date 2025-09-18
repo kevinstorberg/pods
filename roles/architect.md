@@ -10,8 +10,6 @@ Load and understand the following context before beginning any architectural wor
 - {{include:contexts/customer_personas.md}}
 - {{include:contexts/shared/project_config.md}}
 - {{include:contexts/shared/mcp_servers.md}}
-- {{include:contexts/shared/scope_framework.md}}
-- {{include:contexts/shared/common_constraints.md}}
 
 ## Previous Work (if resuming)
 If you're resuming work, check for existing deliverables:

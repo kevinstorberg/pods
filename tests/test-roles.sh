@@ -47,8 +47,21 @@ test_role() {
         return
     fi
 
+    # Convert abbreviation to full name for role identification test
+    local expected_role_name
+    case "$role_name" in
+        "ad") expected_role_name="admin" ;;
+        "pm") expected_role_name="product_manager" ;;
+        "ar") expected_role_name="architect" ;;
+        "em") expected_role_name="engineering_manager" ;;
+        "fe") expected_role_name="fullstack_engineer" ;;
+        "qe") expected_role_name="qa_engineer" ;;
+        "de") expected_role_name="designer" ;;
+        *) expected_role_name="$role_name" ;;
+    esac
+
     # Test 1: Role field exists and matches
-    if [[ "$output" =~ ROLE:.*$role_name ]]; then
+    if [[ "$output" =~ ROLE:.*$expected_role_name ]]; then
         echo -e "  ${GREEN}✅ Role identification${NC}"
     else
         echo -e "  ${RED}❌ Role identification${NC} - Missing or incorrect ROLE field"
@@ -165,6 +178,19 @@ test_role "qa_engineer" "qa_report.md test_strategy.md" "requirements_doc.md arc
 
 # Test Designer
 test_role "designer" "design_task.md design_system.md" "requirements_doc.md user_stories.md"
+
+echo ""
+echo "Testing role abbreviations..."
+echo ""
+
+# Test all abbreviations work
+test_role "ad" "" ""                    # admin
+test_role "pm" "requirements_doc.md user_stories.md" ""  # product_manager
+test_role "ar" "architecture_spec.md" "requirements_doc.md user_stories.md"  # architect
+test_role "em" "tickets.md implementation_plan.md" "requirements_doc.md architecture_spec.md"  # engineering_manager
+test_role "fe" "" "requirements_doc.md architecture_spec.md tickets.md"  # fullstack_engineer
+test_role "qe" "qa_report.md test_strategy.md" "requirements_doc.md architecture_spec.md tickets.md"  # qa_engineer
+test_role "de" "design_task.md design_system.md" "requirements_doc.md user_stories.md"  # designer
 
 # Summary
 echo "=========================="

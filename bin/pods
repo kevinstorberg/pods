@@ -141,7 +141,7 @@ if command -v "$AI_EDITOR" &> /dev/null; then
             # For unsupported editors, launch normally and show manual instructions
             "$AI_EDITOR"
             echo ""
-            echo "⚠️  Your AI editor doesn't support automatic role loading."
+            echo "⚠️  Your AI assistant doesn't support automatic role loading."
             echo "Please manually enter this command:"
             echo "\"$ROLE_COMMAND\""
             ;;
@@ -149,7 +149,7 @@ if command -v "$AI_EDITOR" &> /dev/null; then
 else
     echo "Error: $AI_EDITOR command not found."
     echo "Please install $AI_EDITOR or ensure it's in your PATH."
-    echo "You can also edit config/pods.conf to use a different AI editor."
+    echo "You can also edit config/assistants.json to use a different AI assistant."
     echo ""
     echo "Alternatively, you can manually:"
     echo "1. Start your AI coding tool in this directory: $SCRIPT_DIR"
