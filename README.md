@@ -57,7 +57,9 @@ Product Manager → Architect → Engineering Manager → Fullstack Engineer →
 
 ## 🚀 Getting Started
 
-### 1. Set Up PODs Framework
+### For New Projects
+
+#### 1. Set Up PODs Framework
 
 ```bash
 # Clone the PODs framework to your project
@@ -77,7 +79,7 @@ Edit the configuration file to set your preferred AI coding tools:
 ```
 
 Example configuration:
-```json5
+```javascript
 {
   // Default AI assistant for all roles
   "default": "claude",
@@ -101,7 +103,7 @@ Configure Model Context Protocol servers for enhanced AI capabilities:
 ```
 
 Example MCP configuration:
-```json5
+```javascript
 {
   "mcpServers": {
     // Uncomment and configure as needed
@@ -149,12 +151,59 @@ The admin will:
 Work through the role chain for your feature development:
 
 ```bash
-bin/pods product-manager
+# Full names
+bin/pods product_manager
 bin/pods architect
-bin/pods engineering-manager
-bin/pods fullstack-engineer
-bin/pods qa-engineer
+bin/pods engineering_manager
+bin/pods fullstack_engineer
+bin/pods qa_engineer
+
+# Or use abbreviations
+bin/pods pm
+bin/pods ar
+bin/pods em
+bin/pods fe
+bin/pods qe
 ```
+
+### For Existing Projects
+
+#### 1. Add PODs to Your Existing Repository
+
+```bash
+# Navigate to your existing project root
+cd my-existing-project
+
+# Add PODs framework as a git subtree
+git subtree add --prefix=pods https://github.com/kevinstorberg/pods.git main --squash
+
+# Navigate to PODs directory
+cd pods
+
+# Install dependencies
+npm install
+
+# Make scripts executable
+chmod +x bin/pods bin/initialize
+```
+
+#### 2. Configure for Your Existing Project
+
+```bash
+# The project.json already points to parent directory (..)
+# Configure AI assistants as needed
+# Edit config/assistants.json
+# Edit config/mcp.json (optional)
+```
+
+#### 3. Analyze Your Existing Codebase
+
+```bash
+# Run admin to analyze your existing project
+bin/pods admin
+```
+
+The Admin will automatically analyze your existing codebase in the parent directory, detect your tech stack, and configure PODs contexts based on your project structure.
 
 ## 📁 Repository Structure
 
@@ -164,6 +213,7 @@ pods/
 │   ├── initialize          # Project setup script
 │   ├── pods                # Main role launcher
 │   └── test               # Test suite runner
+├── branch/                 # Generated content workspace (git-ignored)
 ├── config/
 │   ├── assistants.json     # AI assistant configuration
 │   ├── mcp.json           # MCP server configuration
@@ -202,9 +252,8 @@ pods/
 │   ├── test_strategy.md
 │   ├── ticket_template.md
 │   └── user_story.md
-├── tests/                 # Test suite
-│   └── test-roles.sh     # Role loading tests
-└── branch/               # Generated content workspace (git-ignored)
+└── tests/                 # Test suite
+    └── test-roles.sh     # Role loading tests
 ```
 
 ## 🎨 Key Features

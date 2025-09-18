@@ -9,8 +9,21 @@ if [ $# -eq 0 ]; then
     exit 1
 fi
 
-ROLE_NAME=$1
+INPUT_ROLE=$1
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+
+# Convert abbreviations to full role names
+case "$INPUT_ROLE" in
+    "ad") ROLE_NAME="admin" ;;
+    "pm") ROLE_NAME="product_manager" ;;
+    "ar") ROLE_NAME="architect" ;;
+    "em") ROLE_NAME="engineering_manager" ;;
+    "fe") ROLE_NAME="fullstack_engineer" ;;
+    "qe") ROLE_NAME="qa_engineer" ;;
+    "de") ROLE_NAME="designer" ;;
+    *) ROLE_NAME="$INPUT_ROLE" ;;
+esac
+
 ROLE_FILE="${SCRIPT_DIR}/roles/${ROLE_NAME}.md"
 
 # Validate role exists
@@ -22,7 +35,16 @@ if [ ! -f "$ROLE_FILE" ]; then
     for role_file in "${SCRIPT_DIR}/roles"/*.md; do
         if [ -f "$role_file" ]; then
             role=$(basename "$role_file" .md)
-            echo "  $role"
+            case "$role" in
+                "admin") echo "  admin (ad)" ;;
+                "product_manager") echo "  product_manager (pm)" ;;
+                "architect") echo "  architect (ar)" ;;
+                "engineering_manager") echo "  engineering_manager (em)" ;;
+                "fullstack_engineer") echo "  fullstack_engineer (fe)" ;;
+                "qa_engineer") echo "  qa_engineer (qe)" ;;
+                "designer") echo "  designer (de)" ;;
+                *) echo "  $role" ;;
+            esac
         fi
     done
     exit 1
