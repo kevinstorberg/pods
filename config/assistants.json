@@ -1,0 +1,21 @@
+{
+  // AI Assistants Configuration
+  // Configure which AI coding assistant to use for each role
+
+  // Supported AI assistants
+  "assistants": ["claude", "gemini"],
+
+  // Default AI assistant (fallback for all roles)
+  "default": "claude",
+
+  // Role-specific AI assistants (uncomment and customize as needed)
+  "roles": {
+    // "admin": "claude",
+    // "product_manager": "claude",
+    // "architect": "claude",
+    // "engineering_manager": "gemini",
+    // "fullstack_engineer": "claude",
+    // "qa_engineer": "claude",
+    // "designer": "claude"
+  }
+}

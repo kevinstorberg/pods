@@ -61,8 +61,11 @@ Product Manager → Architect → Engineering Manager → Fullstack Engineer →
 
 ```bash
 # Clone the PODs framework to your project
-git clone https://github.com/your-org/pods.git
+git clone https://github.com/kevinstorberg/pods.git
 cd pods
+
+# Install dependencies
+npm install
 ```
 
 ### 2. Configure AI Assistants
@@ -70,21 +73,57 @@ cd pods
 Edit the configuration file to set your preferred AI coding tools:
 
 ```bash
-# Edit config/roles.conf
-# Set DEFAULT_AI_ASSISTANT and role-specific overrides
+# Edit config/assistants.json
 ```
 
 Example configuration:
-```bash
-# Default for all roles
-DEFAULT_AI_ASSISTANT="claude"
+```json
+{
+  // Default AI assistant for all roles
+  "default": "claude",
 
-# Use different assistants for specific roles
-FULLSTACK_ENGINEER="gemini"
-ENGINEERING_MANAGER="gemini"
+  // Role-specific overrides (uncomment as needed)
+  "roles": {
+    // "fullstack_engineer": "gemini",
+    // "engineering_manager": "gemini"
+  }
+}
 ```
 
-### 3. Initialize Project Context
+### 3. Configure MCP Servers (Optional)
+
+Configure Model Context Protocol servers for enhanced AI capabilities:
+
+```bash
+# Edit config/mcp.json
+# Supports JSONC format with comments
+# Uncomment desired servers and add API keys
+```
+
+Example MCP configuration:
+```json
+{
+  "mcpServers": {
+    // Uncomment and configure as needed
+    // "figma-community": {
+    //   "command": "npx",
+    //   "args": ["-y", "figma-developer-mcp", "--figma-api-key=YOUR-KEY"],
+    //   "env": {
+    //     "FIGMA_ACCESS_TOKEN": "YOUR-FIGMA-API-KEY"
+    //   }
+    // },
+    // "github": {
+    //   "command": "npx",
+    //   "args": ["-y", "@modelcontextprotocol/server-github"],
+    //   "env": {
+    //     "GITHUB_PERSONAL_ACCESS_TOKEN": "YOUR-GITHUB-TOKEN"
+    //   }
+    // }
+  }
+}
+```
+
+### 4. Initialize Project Context
 
 Run the admin role to configure your project context:
 
@@ -125,7 +164,8 @@ pods/
 │   ├── pods                # Main role launcher
 │   └── initialize          # Project setup script
 ├── config/
-│   └── roles.conf          # Role and AI assistant configuration
+│   ├── assistants.json     # AI assistant configuration
+│   └── mcp.json           # MCP server configuration
 ├── roles/                   # AI role definitions
 │   ├── shared/             # Common role components
 │   │   ├── quality_standards.md
@@ -196,11 +236,14 @@ We welcome contributions to make PODs more powerful and accessible! Here's how y
 
 #### Setting Up Development Environment
 ```bash
-git clone https://github.com/your-org/pods.git
+git clone https://github.com/kevinstorberg/pods.git
 cd pods
+# Install dependencies
+npm install
 # Make scripts executable
 chmod +x bin/pods bin/initialize
-# Configure roles (edit config/roles.conf as needed)
+# Configure assistants (edit config/assistants.json as needed)
+# Configure MCP servers (edit config/mcp.json as needed)
 # Test the framework
 bin/pods admin
 ```
@@ -220,6 +263,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 - Built for the developer community who believes AI should augment, not replace, human creativity
 - Inspired by Agile methodologies and modern software development practices
+- Special thanks to **Ryan Storberg** and **Tarrus Richardson** for being invaluable thought partners in developing this framework
 - Thanks to all contributors who help make software development more accessible and efficient
 
 ---

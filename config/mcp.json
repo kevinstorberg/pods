@@ -1,0 +1,101 @@
+{
+  // PODs MCP Server Configuration
+  // Universal format compatible with Claude and Gemini
+  // Uncomment servers below and add your API keys/tokens as needed
+
+  "mcpServers": {
+
+    // === DESIGN & PROTOTYPING ===
+
+    // Official Figma Dev Mode - requires paid plan + desktop app
+    // Runs at http://127.0.0.1:3845/mcp when enabled in Figma Preferences
+    // "figma-official": {
+    //   "type": "sse",
+    //   "url": "http://127.0.0.1:3845/mcp"
+    // },
+
+    // Community Figma MCP - requires API token from Figma settings
+    // "figma-community": {
+    //   "command": "npx",
+    //   "args": ["-y", "figma-developer-mcp", "--figma-api-key=YOUR-FIGMA-API-KEY", "--stdio"],
+    //   "env": {
+    //     "FIGMA_ACCESS_TOKEN": "YOUR-FIGMA-API-KEY"
+    //   }
+    // },
+
+    // === VERSION CONTROL & CODE ===
+
+    // GitHub repository access - requires Personal Access Token with repo scope
+    // "github": {
+    //   "command": "npx",
+    //   "args": ["-y", "@modelcontextprotocol/server-github"],
+    //   "env": {
+    //     "GITHUB_PERSONAL_ACCESS_TOKEN": "YOUR-GITHUB-TOKEN"
+    //   }
+    // },
+
+    // Local Git repository operations - no API key required
+    // "git": {
+    //   "command": "npx",
+    //   "args": ["-y", "@modelcontextprotocol/server-git"]
+    // },
+
+    // === FILE SYSTEM & DATA ===
+
+    // Secure file operations - specify allowed directories
+    // "filesystem": {
+    //   "command": "npx",
+    //   "args": [
+    //     "-y",
+    //     "@modelcontextprotocol/server-filesystem",
+    //     "/path/to/project/directory",
+    //     "/path/to/docs/directory"
+    //   ]
+    // },
+
+    // PostgreSQL database access - read-only queries and schema inspection
+    // "postgres": {
+    //   "command": "npx",
+    //   "args": [
+    //     "-y",
+    //     "@modelcontextprotocol/server-postgres",
+    //     "postgresql://localhost/your-database-name"
+    //   ]
+    // },
+
+    // === BROWSER AUTOMATION ===
+
+    // Web scraping and browser automation
+    // "puppeteer": {
+    //   "command": "npx",
+    //   "args": ["-y", "@modelcontextprotocol/server-puppeteer"],
+    //   "env": {
+    //     "PUPPETEER_LAUNCH_OPTIONS": "{\"headless\": true}",
+    //     "ALLOW_DANGEROUS": "false"
+    //   }
+    // },
+
+    // === AI & PRODUCTIVITY ===
+
+    // Persistent knowledge graph for AI memory across sessions
+    // "memory": {
+    //   "command": "npx",
+    //   "args": ["-y", "@modelcontextprotocol/server-memory"]
+    // },
+
+    // Enhanced problem-solving through structured thinking process
+    // "sequential-thinking": {
+    //   "command": "npx",
+    //   "args": ["-y", "@modelcontextprotocol/server-sequential-thinking"]
+    // },
+
+    // === WEB & CONTENT ===
+
+    // Web content retrieval and conversion for efficient LLM usage
+    // "fetch": {
+    //   "command": "npx",
+    //   "args": ["-y", "@modelcontextprotocol/server-fetch"]
+    //   }
+
+  }
+}

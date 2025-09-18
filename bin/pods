@@ -29,22 +29,53 @@ if [ ! -f "$ROLE_FILE" ]; then
 fi
 
 # Load configuration
-CONFIG_FILE="${SCRIPT_DIR}/config/roles.conf"
+CONFIG_FILE="${SCRIPT_DIR}/config/assistants.json"
 
 if [ -f "$CONFIG_FILE" ]; then
-    # Source the config file to load DEFAULT_AI_ASSISTANT variable
-    source "$CONFIG_FILE"
+    # Parse JSONC config file using Node.js with jsonc-parser
+    if command -v node &> /dev/null; then
+        # Check if jsonc-parser is installed
+        if [ ! -d "${SCRIPT_DIR}/node_modules" ]; then
+            echo "Installing dependencies..."
+            cd "$SCRIPT_DIR" && npm install > /dev/null 2>&1
+        fi
+
+        # Parse JSONC configuration
+        CONFIG_RESULT=$(node -e "
+            const fs = require('fs');
+            const { parse } = require('jsonc-parser');
+            try {
+                const content = fs.readFileSync('$CONFIG_FILE', 'utf8');
+                const config = parse(content);
+                const defaultAssistant = config.default || 'claude';
+                const roleAssistant = config.roles && config.roles['$ROLE_NAME'] || '';
+                console.log(JSON.stringify({default: defaultAssistant, role: roleAssistant}));
+            } catch (error) {
+                console.log(JSON.stringify({error: error.message}));
+            }
+        " 2>/dev/null)
+
+        # Parse the result
+        if echo "$CONFIG_RESULT" | grep -q '"error"'; then
+            echo "Error parsing config file: $CONFIG_FILE"
+            exit 1
+        fi
+
+        DEFAULT_AI_ASSISTANT=$(echo "$CONFIG_RESULT" | node -e "console.log(JSON.parse(require('fs').readFileSync(0, 'utf8')).default)")
+        ROLE_ASSISTANT=$(echo "$CONFIG_RESULT" | node -e "console.log(JSON.parse(require('fs').readFileSync(0, 'utf8')).role)")
+    else
+        echo "Error: Node.js required to parse JSONC config file"
+        echo "Please install Node.js: https://nodejs.org/"
+        exit 1
+    fi
 else
     echo "Error: Config file not found at $CONFIG_FILE"
-    echo "Please ensure the config file exists with DEFAULT_AI_ASSISTANT setting."
+    echo "Please ensure the config file exists."
     exit 1
 fi
 
-# Check for role-specific AI assistant configuration
-ROLE_VAR="$(echo "$ROLE_NAME" | tr '[:lower:]' '[:upper:]' | tr '-' '_')"
-ROLE_ASSISTANT="${!ROLE_VAR}"
-
-if [ -n "$ROLE_ASSISTANT" ]; then
+# Use role-specific assistant or fall back to default
+if [ -n "$ROLE_ASSISTANT" ] && [ "$ROLE_ASSISTANT" != "null" ] && [ "$ROLE_ASSISTANT" != "" ]; then
     AI_EDITOR="$ROLE_ASSISTANT"
     echo "Using role-specific AI assistant: $AI_EDITOR"
 else

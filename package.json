@@ -1,0 +1,42 @@
+{
+  "name": "pods-framework",
+  "version": "1.0.0",
+  "description": "AI-Powered Development Framework - Role-based AI agent orchestration for complete software development lifecycle",
+  "main": "bin/pods",
+  "bin": {
+    "pods": "./bin/pods"
+  },
+  "scripts": {
+    "install-deps": "npm install",
+    "test": "bin/pods admin"
+  },
+  "dependencies": {
+    "jsonc-parser": "^3.2.1"
+  },
+  "devDependencies": {},
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "keywords": [
+    "ai",
+    "development",
+    "framework",
+    "agents",
+    "agile",
+    "product-management",
+    "architecture",
+    "engineering",
+    "qa",
+    "design"
+  ],
+  "author": "PODs Contributors",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kevinstorberg/pods"
+  },
+  "homepage": "https://github.com/kevinstorberg/pods#readme",
+  "bugs": {
+    "url": "https://github.com/kevinstorberg/pods/issues"
+  }
+}
