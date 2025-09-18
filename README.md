@@ -80,7 +80,7 @@ Example configuration:
 DEFAULT_AI_ASSISTANT="claude"
 
 # Use different assistants for specific roles
-FULLSTACK_ENGINEER="cursor-agent"
+FULLSTACK_ENGINEER="gemini"
 ENGINEERING_MANAGER="gemini"
 ```
 

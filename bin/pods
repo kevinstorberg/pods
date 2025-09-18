@@ -74,10 +74,6 @@ if command -v "$AI_EDITOR" &> /dev/null; then
             # Use Gemini CLI's -i flag for interactive prompt
             "$AI_EDITOR" -i "$ROLE_COMMAND"
             ;;
-        "cursor-agent")
-            # Use Cursor CLI's prompt argument
-            "$AI_EDITOR" "$ROLE_COMMAND"
-            ;;
         *)
             # For unsupported editors, launch normally and show manual instructions
             "$AI_EDITOR"
