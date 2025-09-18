@@ -77,7 +77,7 @@ Edit the configuration file to set your preferred AI coding tools:
 ```
 
 Example configuration:
-```json
+```json5
 {
   // Default AI assistant for all roles
   "default": "claude",
@@ -101,7 +101,7 @@ Configure Model Context Protocol servers for enhanced AI capabilities:
 ```
 
 Example MCP configuration:
-```json
+```json5
 {
   "mcpServers": {
     // Uncomment and configure as needed
@@ -161,43 +161,49 @@ bin/pods qa-engineer
 ```
 pods/
 ├── bin/                     # Executable scripts
+│   ├── initialize          # Project setup script
 │   ├── pods                # Main role launcher
-│   └── initialize          # Project setup script
+│   └── test               # Test suite runner
 ├── config/
 │   ├── assistants.json     # AI assistant configuration
-│   └── mcp.json           # MCP server configuration
-├── roles/                   # AI role definitions
-│   ├── shared/             # Common role components
-│   │   ├── quality_standards.md
-│   │   ├── handoff_requirements.md
-│   │   ├── example_indicators.md
-│   │   └── system_assessment_process.md
-│   ├── admin.md
-│   ├── product_manager.md
-│   ├── architect.md
-│   ├── engineering_manager.md
-│   ├── fullstack_engineer.md
-│   ├── qa_engineer.md
-│   └── designer.md
+│   ├── mcp.json           # MCP server configuration
+│   └── project.json       # Project directory configuration
 ├── contexts/               # Project context templates
 │   ├── shared/            # Framework components
-│   │   ├── scope_framework.md
 │   │   ├── common_constraints.md
+│   │   ├── mcp_servers.md
+│   │   ├── project_config.md
+│   │   ├── scope_framework.md
 │   │   └── technology_categories.md
 │   ├── business_context.md
-│   ├── technical_context.md
 │   ├── customer_personas.md
-│   └── project_constraints.md
+│   ├── project_constraints.md
+│   └── technical_context.md
+├── roles/                   # AI role definitions
+│   ├── shared/             # Common role components
+│   │   ├── example_indicators.md
+│   │   ├── handoff_requirements.md
+│   │   ├── quality_standards.md
+│   │   └── system_assessment_process.md
+│   ├── admin.md
+│   ├── architect.md
+│   ├── designer.md
+│   ├── engineering_manager.md
+│   ├── fullstack_engineer.md
+│   ├── product_manager.md
+│   └── qa_engineer.md
 ├── templates/             # Output format templates
 │   ├── shared/           # Common template components
-│   ├── requirements_doc.md
 │   ├── architecture_spec.md
-│   ├── implementation_plan.md
-│   ├── ticket_template.md
-│   ├── user_story.md
 │   ├── design_task.md
+│   ├── implementation_plan.md
 │   ├── qa_checklist.md
-│   └── test_strategy.md
+│   ├── requirements_doc.md
+│   ├── test_strategy.md
+│   ├── ticket_template.md
+│   └── user_story.md
+├── tests/                 # Test suite
+│   └── test-roles.sh     # Role loading tests
 └── branch/               # Generated content workspace (git-ignored)
 ```
 

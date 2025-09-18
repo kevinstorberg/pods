@@ -1,10 +1,9 @@
 # Project Configuration
 
-## Project Directory
-The actual project directory relative to the PODs framework location:
-**PROJECT_DIRECTORY**: ".."
-
-When PODs is installed in `my-project/pods/`, this points to `my-project/` as the target project directory.
+## Project Directory Settings
+{{include:config/project.json}}
 
 ## Usage
-All roles should analyze and work on files in the PROJECT_DIRECTORY, not the PODs framework directory itself.
+All roles should analyze and work on files in the configured project directory, not the PODs framework directory itself.
+
+When PODs is installed in `my-project/pods/`, the project_directory setting of ".." points to `my-project/` as the target project directory.

@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# PODs Test Suite Runner
+# Runs all PODs framework tests
+
+set -e
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+
+echo "🧪 Running PODs Test Suite"
+echo "========================="
+echo ""
+
+# Run role loading tests
+echo "Starting role loading tests..."
+"$SCRIPT_DIR/tests/test-roles.sh"
+
+echo ""
+echo "✅ PODs test suite completed!"

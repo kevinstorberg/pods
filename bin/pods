@@ -92,7 +92,17 @@ echo "👤 Role: $ROLE_NAME"
 echo ""
 
 # Create the role assumption command
-ROLE_COMMAND="Please read ./roles/${ROLE_NAME}.md and assume that role. Then introduce yourself."
+ROLE_COMMAND="Please read ./roles/${ROLE_NAME}.md and assume that role. Then output your role metadata in this exact format:
+
+ROLE: ${ROLE_NAME}
+DELIVERABLES: [list the filenames you will create in /branch/ folder]
+INPUTS: [list the key files/contexts you will read]
+PROJECT_DIRECTORY: [the directory you will analyze - from project config]
+MCP_SERVERS: [list any MCP servers you have available, or 'none']
+AI_ASSISTANT: [your AI assistant name]
+STATUS: ready
+
+Do not include any other text or explanation - just this structured metadata."
 
 # Launch AI Editor with the role command as an argument
 if command -v "$AI_EDITOR" &> /dev/null; then

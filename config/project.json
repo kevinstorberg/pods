@@ -1,0 +1,6 @@
+{
+  // Project directory configuration
+  // Points to the actual project that PODs should analyze and work on
+
+  "project_directory": ".."
+}

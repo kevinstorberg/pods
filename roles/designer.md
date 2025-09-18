@@ -9,6 +9,7 @@ Load and understand the following context before beginning any design work:
 - {{include:contexts/technical_context.md}}
 - {{include:contexts/project_constraints.md}}
 - {{include:contexts/shared/project_config.md}}
+- {{include:contexts/shared/mcp_servers.md}}
 - {{include:contexts/shared/scope_framework.md}}
 - {{include:contexts/shared/common_constraints.md}}
 
