@@ -230,7 +230,6 @@ pods/
 ├── roles/                   # AI role definitions
 │   ├── shared/             # Common role components
 │   │   ├── example_indicators.md
-│   │   ├── handoff_requirements.md
 │   │   ├── quality_standards.md
 │   │   └── system_assessment_process.md
 │   ├── admin.md
@@ -242,6 +241,9 @@ pods/
 │   └── qa_engineer.md
 ├── templates/             # Output format templates
 │   ├── shared/           # Common template components
+│   │   ├── acceptance_criteria_framework.md
+│   │   ├── document_header.md
+│   │   └── priority_scale.md
 │   ├── architecture_spec.md
 │   ├── design_task.md
 │   ├── implementation_plan.md

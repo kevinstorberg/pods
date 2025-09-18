@@ -110,7 +110,12 @@ Create a comprehensive document with these sections:
 {{include:roles/shared/quality_standards.md}}
 
 ## Handoff to Architecture
-{{include:roles/shared/handoff_requirements.md#for-product-managers}}
+Ensure your requirements document provides:
+- Clear feature definitions for architectural planning
+- Integration and data flow requirements
+- Performance and scalability expectations
+- Security and compliance considerations
+- Priority order for phased implementation
 
 ## Example Quality Indicators
 {{include:roles/shared/example_indicators.md}}

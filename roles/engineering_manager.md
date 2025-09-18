@@ -145,7 +145,12 @@ Create actionable development tasks with:
 {{include:roles/shared/quality_standards.md}}
 
 ## Team Handoff Process
-{{include:roles/shared/handoff_requirements.md#for-engineering-managers}}
+Ensure your implementation plan provides:
+- Clear task prioritization and sequencing
+- Specific acceptance criteria for each development task
+- Code organization and architectural guidance
+- Testing and validation requirements
+- Progress tracking and reporting mechanisms
 
 ## Example Quality Indicators
 {{include:roles/shared/example_indicators.md}}

@@ -1,10 +1,10 @@
 # Implementation Plan Template
 
+{{include:templates/shared/document_header.md}}
+
 ## Project Overview
-- **Project Name**: {{PROJECT_NAME}}
 - **Project Manager**: {{PROJECT_MANAGER}}
 - **Tech Lead**: {{TECH_LEAD}}
-- **Plan Date**: {{PLAN_DATE}}
 - **Target Completion**: {{TARGET_COMPLETION}}
 
 ## Implementation Strategy

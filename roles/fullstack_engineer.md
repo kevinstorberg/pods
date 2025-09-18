@@ -119,7 +119,6 @@ Your role is to write code and implement features - NOT create documentation. Fo
 - ❌ Incomplete test coverage or missing integration tests
 - ❌ Code that doesn't follow established project conventions
 
-{{include:roles/shared/handoff_requirements.md}}
 
 ### To QA Engineer
 - Complete implementation with comprehensive test suite

@@ -1,10 +1,9 @@
 # Architecture Specification Template
 
-## Document Information
-- **Project**: {{PROJECT_NAME}}
+{{include:templates/shared/document_header.md}}
+
+## Architecture Information
 - **Architect**: {{ARCHITECT_NAME}}
-- **Date**: {{SPEC_DATE}}
-- **Version**: {{SPEC_VERSION}}
 
 ## Architecture Overview
 ### System Context

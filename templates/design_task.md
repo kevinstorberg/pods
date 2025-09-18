@@ -1,12 +1,13 @@
 # Design Task Template
 
+{{include:templates/shared/document_header.md}}
+
 ## Task Information
 - **Task ID**: {{TASK_ID}}
 - **Designer**: {{DESIGNER_NAME}}
 - **Related Story**: {{RELATED_STORY}}
 - **Priority**: {{PRIORITY}} (Critical, High, Medium, Low)
 - **Estimate**: {{TIME_ESTIMATE}}
-- **Due Date**: {{DUE_DATE}}
 
 ## Design Brief
 ### Objective

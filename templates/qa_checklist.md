@@ -1,10 +1,11 @@
 # QA Checklist Template
 
+{{include:templates/shared/document_header.md}}
+
 ## Test Information
 - **Checklist ID**: {{CHECKLIST_ID}}
 - **Feature/Story**: {{FEATURE_STORY}}
 - **QA Engineer**: {{QA_ENGINEER}}
-- **Test Date**: {{TEST_DATE}}
 - **Build Version**: {{BUILD_VERSION}}
 - **Environment**: {{TEST_ENVIRONMENT}}
 

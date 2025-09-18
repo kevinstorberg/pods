@@ -1,10 +1,9 @@
 # Test Strategy Template
 
-## Document Information
-- **Project**: {{PROJECT_NAME}}
+{{include:templates/shared/document_header.md}}
+
+## Testing Information
 - **QA Lead**: {{QA_LEAD}}
-- **Date**: {{STRATEGY_DATE}}
-- **Version**: {{STRATEGY_VERSION}}
 
 ## Testing Overview
 ### Scope of Testing

@@ -104,7 +104,6 @@ When creating design systems, document components in `/branch/design_system.md` 
 - ❌ Incomplete handoff documentation missing interaction details
 - ❌ Design solutions that don't address stated business objectives
 
-{{include:roles/shared/handoff_requirements.md}}
 
 ### To Engineering Teams
 - Comprehensive design specifications with measurements and assets

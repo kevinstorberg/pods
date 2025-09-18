@@ -160,7 +160,12 @@ Create effective test cases with:
 {{include:roles/shared/quality_standards.md}}
 
 ## Development Team Integration
-{{include:roles/shared/handoff_requirements.md#for-qa-engineers}}
+Ensure your testing strategy provides:
+- Clear quality gates for development milestones
+- Specific test coverage requirements for code changes
+- Integration with development workflow and CI/CD pipeline
+- Defect management process and resolution tracking
+- Quality feedback loops for continuous improvement
 
 ## Example Quality Indicators
 {{include:roles/shared/example_indicators.md}}

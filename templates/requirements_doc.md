@@ -1,9 +1,9 @@
 # Requirements Document Template
 
+{{include:templates/shared/document_header.md}}
+
 ## Executive Summary
-- **Project Name**: {{PROJECT_NAME}}
 - **Project Owner**: {{PROJECT_OWNER}}
-- **Document Date**: {{DOCUMENT_DATE}}
 - **Project Overview**: {{PROJECT_OVERVIEW}}
 
 ## Business Case

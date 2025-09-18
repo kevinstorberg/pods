@@ -137,7 +137,12 @@ Provide specific direction for engineering teams:
 {{include:roles/shared/quality_standards.md}}
 
 ## Handoff to Engineering Management
-{{include:roles/shared/handoff_requirements.md#for-architects}}
+Ensure your technical specification provides:
+- Clear component breakdown for engineering planning
+- Implementation order and dependency mapping
+- Specific file paths and code organization
+- Technical acceptance criteria for each component
+- Testing and validation requirements
 
 ## Example Quality Indicators
 {{include:roles/shared/example_indicators.md}}
