@@ -8,6 +8,7 @@ Load and understand existing context (if it exists) and the shared framework:
 - {{include:contexts/technical_context.md}} (if exists)
 - {{include:contexts/customer_personas.md}} (if exists)
 - {{include:contexts/project_constraints.md}} (if exists)
+- {{include:contexts/shared/project_config.md}}
 - {{include:contexts/shared/scope_framework.md}}
 - {{include:contexts/shared/common_constraints.md}}
 - {{include:contexts/shared/technology_categories.md}}
@@ -50,11 +51,13 @@ Edit the following files in `/contexts/` directory to replace template variables
 Systematically examine the project to understand its current state:
 
 #### Codebase Analysis
-- **Project Structure**: Examine directory layout and organization patterns
-- **Dependencies**: Analyze package.json, requirements.txt, Cargo.toml, etc.
-- **Framework Detection**: Identify frontend/backend frameworks, databases, cloud services
+**Target the actual project directory (as specified in PROJECT_DIRECTORY) for all analysis:**
+
+- **Project Structure**: Examine directory layout and organization patterns in the project directory
+- **Dependencies**: Analyze package.json, requirements.txt, Cargo.toml, etc. in the project directory
+- **Framework Detection**: Identify frontend/backend frameworks, databases, cloud services used by the project
 - **Architecture Patterns**: Determine if monolith, microservices, serverless, etc.
-- **Development Setup**: Find CI/CD configs, testing frameworks, linting rules
+- **Development Setup**: Find CI/CD configs, testing frameworks, linting rules in the project directory
 
 #### Business Context Inference
 - **Industry Clues**: Look for integrations (Stripe=fintech, Shopify=ecommerce, etc.)
@@ -132,10 +135,11 @@ Create comprehensive project configuration files:
 - **Customer Personas**: Detailed user profiles based on discovered/provided information
 
 #### Validation and Refinement
-- **Present detected information** for user confirmation
-- **Highlight assumptions** made during auto-detection
-- **Allow for corrections** and refinements
-- **Explain reasoning** behind inferences and suggestions
+- **Present all detected information** for user confirmation before writing to context files
+- **Highlight key assumptions** made during auto-detection with reasoning
+- **Ask for corrections** on any inferences that seem uncertain
+- **Explain your reasoning** behind technology choices and business context inferences
+- **Get explicit approval** before updating context files with detected values
 
 ## Auto-Detection Capabilities
 
@@ -201,11 +205,12 @@ JAMstack: Static generation, API-driven, CDN deployment
 
 ## Initialization Workflow
 
-1. **Scan Project**: Auto-detect technical stack, business patterns, existing docs
-2. **Analyze Gaps**: Identify missing information needed for complete configuration
-3. **Ask Questions**: Gather missing context through intelligent, targeted questions
-4. **Configure Files**: Edit context template files in `/contexts/` directory with actual values
-5. **Validate Setup**: Confirm configuration accuracy and completeness with user
-6. **Ready for Roles**: PODs framework is configured and ready for role invocation
+1. **Scan Project**: Auto-detect technical stack, business patterns, existing docs from the project directory
+2. **Present Findings**: Show detected information and assumptions to user for confirmation
+3. **Gather Missing Info**: Ask targeted questions for any gaps in understanding
+4. **Confirm Changes**: Get user approval before updating any context files
+5. **Configure Files**: Edit context template files in `/contexts/` directory with confirmed values
+6. **Validate Setup**: Final confirmation that configuration is accurate and complete
+7. **Ready for Roles**: PODs framework is configured and ready for role invocation
 
 Remember: Your goal is to make PODs setup effortless by doing the detective work automatically and only asking questions when truly necessary. The result should be a fully configured project that any role can immediately understand and work with.
