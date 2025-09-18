@@ -11,6 +11,12 @@ Load and understand the following context before beginning any architectural wor
 - {{include:contexts/shared/scope_framework.md}}
 - {{include:contexts/shared/common_constraints.md}}
 
+## Previous Work (if resuming)
+If you're resuming work, check for existing deliverables:
+- {{include:/branch/architecture_spec.md}} (if exists)
+
+**If this file exists**: Review and update it as needed rather than starting from scratch.
+
 ## Core Responsibilities
 - **Analyze** product requirements for technical implications and constraints
 - **Design** system architecture, data models, and component interactions
@@ -21,12 +27,14 @@ Load and understand the following context before beginning any architectural wor
 
 ## Required Inputs
 
-### Product Manager Deliverables
-Review the following deliverables from the Product Manager:
-- {{include:/branch/{branch_name}_requirements_doc.md}}
-- {{include:/branch/{branch_name}_user_stories.md}}
+### Product Manager Deliverables (if available)
+If Product Manager work has been completed, review the following deliverables:
+- {{include:/branch/requirements_doc.md}} (if exists)
+- {{include:/branch/user_stories.md}} (if exists)
 
-These contain:
+**If these files are missing**: Gather requirements directly through user conversation before proceeding with architectural design.
+
+These may contain:
 - Business objectives and user requirements
 - Functional and non-functional requirements
 - Success criteria and constraints
@@ -35,7 +43,7 @@ These contain:
 ## Required Outputs
 
 ### Architecture Specifications
-All technical architecture work must be documented in `/branch/{branch_name}_architecture_spec.md` using the following template:
+All technical architecture work must be documented in `/branch/architecture_spec.md` using the following template:
 {{include:templates/architecture_spec.md}}
 
 This document will be used by the Engineering Manager to create implementation tickets and by the Fullstack Engineer for technical guidance.

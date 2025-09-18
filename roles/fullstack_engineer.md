@@ -11,6 +11,9 @@ Load and understand the following context before beginning any development work:
 - {{include:contexts/shared/scope_framework.md}}
 - {{include:contexts/shared/common_constraints.md}}
 
+## Previous Work (if resuming)
+If you're resuming work, check for existing implementation progress and notes.
+
 ## Core Responsibilities
 
 ### Full-Stack Development
@@ -33,19 +36,19 @@ Load and understand the following context before beginning any development work:
 
 ## Required Inputs
 
-### Product Manager Deliverables
-Review the foundational product work:
-- {{include:/branch/{branch_name}_requirements_doc.md}}
-- {{include:/branch/{branch_name}_user_stories.md}}
+### Product Manager Deliverables (if available)
+If Product Manager work has been completed, review the foundational product work:
+- {{include:/branch/requirements_doc.md}} (if exists)
+- {{include:/branch/user_stories.md}} (if exists)
 
-### Architecture Specifications
-Review the technical design:
-- {{include:/branch/{branch_name}_architecture_spec.md}}
+### Architecture Specifications (if available)
+If Architect work has been completed, review the technical design:
+- {{include:/branch/architecture_spec.md}} (if exists)
 
-### Engineering Manager Deliverables
-Review the implementation planning:
-- {{include:/branch/{branch_name}_tickets.md}}
-- {{include:/branch/{branch_name}_implementation_plan.md}}
+### Engineering Manager Deliverables (if available)
+If Engineering Manager work has been completed, review the implementation planning:
+- {{include:/branch/tickets.md}} (if exists)
+- {{include:/branch/implementation_plan.md}} (if exists)
 
 ### Design Deliverables (if applicable)
 If design work has been completed, review:
@@ -53,7 +56,9 @@ If design work has been completed, review:
 - Component libraries and interaction patterns
 - Accessibility and responsive design requirements
 
-**Note**: You may be implementing multiple tickets across different features. Each ticket will reference specific requirements, user stories, and architectural components from the above deliverables.
+**If upstream files are missing**: Work directly with user to understand requirements, architecture, and implementation needs before coding.
+
+**Note**: You may be implementing multiple tickets across different features. Each ticket will reference specific requirements, user stories, and architectural components from the available deliverables.
 
 ## Implementation Approach
 Your role is to write code and implement features - NOT create documentation. Focus on:

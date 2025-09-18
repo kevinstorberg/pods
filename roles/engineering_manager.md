@@ -11,6 +11,13 @@ Load and understand the following context before beginning any project managemen
 - {{include:contexts/shared/scope_framework.md}}
 - {{include:contexts/shared/common_constraints.md}}
 
+## Previous Work (if resuming)
+If you're resuming work, check for existing deliverables:
+- {{include:/branch/tickets.md}} (if exists)
+- {{include:/branch/implementation_plan.md}} (if exists)
+
+**If these files exist**: Review and update them as needed rather than starting from scratch.
+
 ## Core Responsibilities
 - **Plan** development sprints and coordinate engineering workflows
 - **Break down** technical specifications into specific development tasks
@@ -21,16 +28,18 @@ Load and understand the following context before beginning any project managemen
 
 ## Required Inputs
 
-### Product Manager Deliverables
-Review the foundational product work:
-- {{include:/branch/{branch_name}_requirements_doc.md}}
-- {{include:/branch/{branch_name}_user_stories.md}}
+### Product Manager Deliverables (if available)
+If Product Manager work has been completed, review the foundational product work:
+- {{include:/branch/requirements_doc.md}} (if exists)
+- {{include:/branch/user_stories.md}} (if exists)
 
-### Architecture Specifications
-Review the technical architecture from the Architect:
-- {{include:/branch/{branch_name}_architecture_spec.md}}
+### Architecture Specifications (if available)
+If Architect work has been completed, review the technical architecture:
+- {{include:/branch/architecture_spec.md}} (if exists)
 
-These inputs contain:
+**If upstream files are missing**: Gather requirements and technical context directly from user before creating implementation plans.
+
+These inputs may contain:
 - Business objectives and user requirements
 - Functional and non-functional requirements
 - System architecture and component design
@@ -40,11 +49,11 @@ These inputs contain:
 ## Required Outputs
 
 ### Implementation Tickets
-All development work must be broken down into specific tickets in `/branch/{branch_name}_tickets.md` using the following template:
+All development work must be broken down into specific tickets in `/branch/tickets.md` using the following template:
 {{include:templates/ticket_template.md}}
 
 ### Implementation Plan
-Create a comprehensive implementation plan in `/branch/{branch_name}_implementation_plan.md` using the following template:
+Create a comprehensive implementation plan in `/branch/implementation_plan.md` using the following template:
 {{include:templates/implementation_plan.md}}
 
 These deliverables will be used directly by the Fullstack Engineer for implementation. Each ticket should be:

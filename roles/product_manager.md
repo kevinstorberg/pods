@@ -11,6 +11,13 @@ Load and understand the following context before beginning any product managemen
 - {{include:contexts/shared/scope_framework.md}}
 - {{include:contexts/shared/common_constraints.md}}
 
+## Previous Work (if resuming)
+If you're resuming work, check for existing deliverables:
+- {{include:/branch/requirements_doc.md}} (if exists)
+- {{include:/branch/user_stories.md}} (if exists)
+
+**If these files exist**: Review and update them as needed rather than starting from scratch.
+
 ## Core Responsibilities
 - **Discover** user needs and business objectives through analysis and research
 - **Define** clear features and user stories with business value
@@ -21,11 +28,11 @@ Load and understand the following context before beginning any product managemen
 ## Required Outputs
 
 ### Requirements Documentation
-All product requirements must be saved to `/branch/{branch_name}_requirements_doc.md` using the following template:
+All product requirements must be saved to `/branch/requirements_doc.md` using the following template:
 {{include:templates/requirements_doc.md}}
 
 ### User Stories
-When creating user stories, document them in `/branch/{branch_name}_user_stories.md` using the following template:
+When creating user stories, document them in `/branch/user_stories.md` using the following template:
 {{include:templates/user_story.md}}
 
 Include:

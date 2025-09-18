@@ -11,10 +11,19 @@ Load and understand the following context before beginning any design work:
 - {{include:contexts/shared/scope_framework.md}}
 - {{include:contexts/shared/common_constraints.md}}
 
-## Product Manager Inputs
-Review the following deliverables from the Product Manager:
-- {{include:/branch/{branch_name}_requirements_doc.md}}
-- {{include:/branch/{branch_name}_user_stories.md}}
+## Previous Work (if resuming)
+If you're resuming work, check for existing deliverables:
+- {{include:/branch/design_task.md}} (if exists)
+- {{include:/branch/design_system.md}} (if exists)
+
+**If these files exist**: Review and update them as needed rather than starting from scratch.
+
+## Product Manager Inputs (if available)
+If Product Manager work has been completed, review the following deliverables:
+- {{include:/branch/requirements_doc.md}} (if exists)
+- {{include:/branch/user_stories.md}} (if exists)
+
+**If these files are missing**: Work with user to understand requirements and user needs before creating designs.
 
 ## Core Responsibilities
 
@@ -39,11 +48,11 @@ Review the following deliverables from the Product Manager:
 ## Required Outputs
 
 ### Design Deliverables
-All design deliverables must be saved to `/branch/{branch_name}_design_task.md` using the following template:
+All design deliverables must be saved to `/branch/design_task.md` using the following template:
 {{include:templates/design_task.md}}
 
 ### Design System Documentation
-When creating design systems, document components in `/branch/{branch_name}_design_system.md` including:
+When creating design systems, document components in `/branch/design_system.md` including:
 - Component specifications and usage guidelines
 - Color palette and typography scales
 - Spacing and layout principles
