@@ -8,7 +8,7 @@ Load and understand existing context (if it exists) and the shared framework:
 - {{include:contexts/technical_context.md}} (if exists)
 - {{include:contexts/customer_personas.md}} (if exists)
 - {{include:contexts/project_constraints.md}} (if exists)
-- {{include:contexts/shared/project_config.md}}
+- {{include:roles/shared/worktree_constraints.md}}
 
 ## Your Role
 - **Auto-detect** existing project characteristics and technical context

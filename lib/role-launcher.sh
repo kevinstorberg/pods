@@ -3,6 +3,35 @@
 # Role Launcher Library
 # Handles role launching with argument support
 
+# Centralized role mapping functions
+get_role_fullname() {
+    local input="$1"
+    case "$input" in
+        "ad") echo "admin" ;;
+        "pm") echo "product_manager" ;;
+        "ar") echo "architect" ;;
+        "em") echo "engineering_manager" ;;
+        "fe") echo "fullstack_engineer" ;;
+        "qe") echo "qa_engineer" ;;
+        "de") echo "designer" ;;
+        *) echo "$input" ;;  # Return as-is if no abbreviation
+    esac
+}
+
+get_role_abbreviation() {
+    local role="$1"
+    case "$role" in
+        "admin") echo "ad" ;;
+        "product_manager") echo "pm" ;;
+        "architect") echo "ar" ;;
+        "engineering_manager") echo "em" ;;
+        "fullstack_engineer") echo "fe" ;;
+        "qa_engineer") echo "qe" ;;
+        "designer") echo "de" ;;
+        *) echo "" ;;  # No abbreviation
+    esac
+}
+
 launch_role() {
     local input_role="$1"
     shift # Remove role name, remaining args are flags
@@ -42,16 +71,7 @@ launch_role() {
 
     # Convert abbreviations to full role names
     local role_name
-    case "$input_role" in
-        "ad") role_name="admin" ;;
-        "pm") role_name="product_manager" ;;
-        "ar") role_name="architect" ;;
-        "em") role_name="engineering_manager" ;;
-        "fe") role_name="fullstack_engineer" ;;
-        "qe") role_name="qa_engineer" ;;
-        "de") role_name="designer" ;;
-        *) role_name="$input_role" ;;
-    esac
+    role_name=$(get_role_fullname "$input_role")
 
     # Validate role exists
     local role_file="${SCRIPT_DIR}/roles/${role_name}.md"
@@ -63,16 +83,12 @@ launch_role() {
         for role_file in "${SCRIPT_DIR}/roles"/*.md; do
             if [ -f "$role_file" ]; then
                 local role=$(basename "$role_file" .md)
-                case "$role" in
-                    "admin") echo "  admin (ad)" ;;
-                    "product_manager") echo "  product_manager (pm)" ;;
-                    "architect") echo "  architect (ar)" ;;
-                    "engineering_manager") echo "  engineering_manager (em)" ;;
-                    "fullstack_engineer") echo "  fullstack_engineer (fe)" ;;
-                    "qa_engineer") echo "  qa_engineer (qe)" ;;
-                    "designer") echo "  designer (de)" ;;
-                    *) echo "  $role" ;;
-                esac
+                local abbrev=$(get_role_abbreviation "$role")
+                if [ -n "$abbrev" ]; then
+                    echo "  $role ($abbrev)"
+                else
+                    echo "  $role"
+                fi
             fi
         done
         exit 1
@@ -88,6 +104,25 @@ launch_role() {
         ai_editor=$(get_ai_assistant "$role_name")
     fi
 
+    # Detect worktree information BEFORE changing directory
+    local calling_dir="$(pwd)"
+    local worktree_path=""
+    local branch_name=""
+    local is_worktree="false"
+
+    # Check if we're in a git repository and get worktree info
+    if git rev-parse --git-dir &>/dev/null; then
+        worktree_path="$(git rev-parse --show-toplevel 2>/dev/null || echo "")"
+        branch_name="$(git rev-parse --abbrev-ref HEAD 2>/dev/null || echo "")"
+
+        # Check if this is a worktree (not the main repo)
+        local git_dir="$(git rev-parse --git-dir 2>/dev/null)"
+        local common_dir="$(git rev-parse --git-common-dir 2>/dev/null)"
+        if [[ "$git_dir" != "$common_dir" ]]; then
+            is_worktree="true"
+        fi
+    fi
+
     # Change to PODs directory
     cd "$SCRIPT_DIR"
 
@@ -99,6 +134,15 @@ launch_role() {
     fi
     if [[ -n "$assistant_override" ]]; then
         echo "🤖 Assistant override: $assistant_override"
+    fi
+
+    # Display worktree information
+    if [[ -n "$worktree_path" ]]; then
+        echo "🌳 Worktree: $(basename "$worktree_path")"
+        echo "🔀 Branch: $branch_name"
+        if [[ "$is_worktree" == "true" ]]; then
+            echo "✅ Running in worktree (isolated from main)"
+        fi
     fi
     echo ""
 
@@ -115,12 +159,35 @@ launch_role() {
         test_file="/tmp/pods_test_${role_name}_$(date +%s).result"
     fi
 
+    # Read project directory from config
+    PROJECT_DIRECTORY=$(node -e "
+        const fs = require('fs');
+        const { parse } = require('jsonc-parser');
+        const content = fs.readFileSync('${SCRIPT_DIR}/config/project.json', 'utf8');
+        const config = parse(content);
+        console.log(config.project_directory || '..');
+    " 2>/dev/null || echo "..")
+
+    # Export worktree info as environment variables for the AI to use
+    if [[ -n "$worktree_path" ]]; then
+        export WORKTREE_PATH="$worktree_path"
+        export BRANCH_NAME="$branch_name"
+        export IS_WORKTREE="$is_worktree"
+        export WORKING_DIRECTORY="$worktree_path"
+    else
+        export WORKING_DIRECTORY="$PROJECT_DIRECTORY"
+    fi
+    export PROJECT_DIRECTORY="$PROJECT_DIRECTORY"
+
     local role_command="Please read ./roles/${role_name}.md and assume that role. Then output your role metadata in this exact format:
 
 ROLE: ${role_name}
 DELIVERABLES: [list the filenames you will create in /branch/ folder]
 INPUTS: [list the key files/contexts you will read]
-PROJECT_DIRECTORY: [the directory you will analyze - from project config]
+PROJECT_DIRECTORY: ${PROJECT_DIRECTORY}
+WORKING_DIRECTORY: ${WORKING_DIRECTORY}
+BRANCH: ${branch_name:-main}
+WORKTREE: ${worktree_path:-none}
 MCP_SERVERS: [list any MCP servers you have available, or 'none']
 AI_ASSISTANT: ${ai_editor}
 STATUS: ready

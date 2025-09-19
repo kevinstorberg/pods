@@ -5,16 +5,8 @@
 
 set -e # Exit immediately if a command exits with a non-zero status.
 
-# --- Configuration & Setup ---
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-PASSED=0
-FAILED=0
-
-# Colors for output
-GREEN='\033[0;32m'
-RED='\033[0;31m'
-BLUE='\033[0;34m'
-NC='\033[0m'
+# Source shared test utilities
+source "$(dirname "${BASH_SOURCE[0]}")/shared.sh"
 
 # --- Test Runner ---
 echo "🧪 PODs Role Arguments Tests"
@@ -29,11 +21,11 @@ output=$(cd "$SCRIPT_DIR" && timeout 10s bin/pods pm --a claude 2>&1) || true
 
 if [[ "$output" == *"Using assistant override: claude"* ]]; then
     echo -e "  ${GREEN}✅ Assistant override detected in output${NC}"
-    ((PASSED++))
+    increment_passed
 else
     echo -e "  ${RED}❌ Assistant override not found in output${NC}"
     echo "  Output: $output"
-    ((FAILED++))
+    increment_failed
 fi
 
 # Note: Not killing any processes here as it could affect other running instances
@@ -57,11 +49,11 @@ output=$(cd "$SCRIPT_DIR" && bin/pods ar --t 2>&1) || true
 
 if [[ "$output" == *"🆕 Opening new tab"* ]]; then
     echo -e "  ${GREEN}✅ New tab message detected in output${NC}"
-    ((PASSED++))
+    increment_passed
 else
     echo -e "  ${RED}❌ New tab message not found in output${NC}"
     echo "  Output: $output"
-    ((FAILED++))
+    increment_failed
 fi
 
 # Give a moment for the window/tab to actually open
@@ -139,13 +131,4 @@ fi
 echo ""
 
 # --- Summary ---
-echo "==========================="
-echo -e "Role Arguments Test Results: ${GREEN}$PASSED passed${NC}, ${RED}$FAILED failed${NC}"
-
-if [ $FAILED -eq 0 ]; then
-    echo "🎉 All role arguments tests passed!"
-    exit 0
-else
-    echo "💥 Some role arguments tests failed."
-    exit 1
-fi
+print_test_summary "role arguments tests"

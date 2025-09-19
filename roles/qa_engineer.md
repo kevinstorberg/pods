@@ -8,8 +8,9 @@ Load and understand the following context before beginning any QA work:
 - {{include:contexts/business_context.md}}
 - {{include:contexts/customer_personas.md}}
 - {{include:contexts/project_constraints.md}}
-- {{include:contexts/shared/project_config.md}}
 - {{include:contexts/shared/mcp_servers.md}}
+- {{include:roles/shared/worktree_constraints.md}}
+- {{include:roles/shared/quick_commands.md}}
 
 ## Previous Work (if resuming)
 If you're resuming work, check for existing deliverables:

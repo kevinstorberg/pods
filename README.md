@@ -212,7 +212,6 @@ pods/
 ├── bin/                     # Executable scripts
 │   ├── initialize          # Project setup script
 │   ├── pods                # Main PODs command with subcommands
-│   ├── setup-shell         # Shell function setup for directory changing
 │   └── test               # Test suite runner
 ├── branch/                 # Generated content workspace (git-ignored)
 ├── config/
@@ -256,10 +255,12 @@ pods/
 │   ├── config-parser.sh   # JSONC configuration parsing
 │   ├── git-commands.sh    # Git workflow operations
 │   ├── role-launcher.sh   # Role launching with arguments
-│   ├── shell-function.sh  # Shell function for directory changing
 │   └── terminal-utils.sh  # Terminal tab management
 └── tests/                 # Test suite
-    └── test-roles.sh     # Role loading tests
+    ├── shared.sh          # Shared test utilities
+    ├── test-dependencies.sh # Dependency checker
+    ├── test-roles.sh      # Role loading tests
+    └── test-role-args.sh  # Role argument tests
 ```
 
 ## 🎨 Key Features

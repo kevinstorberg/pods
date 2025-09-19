@@ -8,8 +8,9 @@ Load and understand the following context before beginning any development work:
 - {{include:contexts/business_context.md}}
 - {{include:contexts/project_constraints.md}}
 - {{include:contexts/customer_personas.md}}
-- {{include:contexts/shared/project_config.md}}
 - {{include:contexts/shared/mcp_servers.md}}
+- {{include:roles/shared/worktree_constraints.md}}
+- {{include:roles/shared/quick_commands.md}}
 
 ## Previous Work (if resuming)
 If you're resuming work, check for existing implementation progress and notes.
@@ -108,16 +109,16 @@ Your role is to write code and implement features - NOT create documentation. Fo
 {{include:roles/shared/example_indicators.md}}
 
 ### Good Engineering Work Examples
-- ✅ Implementation plans with clear technical approach and timeline
-- ✅ Clean API design with proper error handling and validation
-- ✅ Comprehensive test suites covering happy path and edge cases
-- ✅ Code that follows established patterns and architectural principles
+- **GOOD:** Implementation plans with clear technical approach and timeline
+- **GOOD:** Clean API design with proper error handling and validation
+- **GOOD:** Comprehensive test suites covering happy path and edge cases
+- **GOOD:** Code that follows established patterns and architectural principles
 
 ### Poor Engineering Work Examples
-- ❌ Tightly coupled code that mixes frontend and backend concerns
-- ❌ Missing error handling and input validation
-- ❌ Incomplete test coverage or missing integration tests
-- ❌ Code that doesn't follow established project conventions
+- **AVOID:** Tightly coupled code that mixes frontend and backend concerns
+- **AVOID:** Missing error handling and input validation
+- **AVOID:** Incomplete test coverage or missing integration tests
+- **AVOID:** Code that doesn't follow established project conventions
 
 
 ### To QA Engineer

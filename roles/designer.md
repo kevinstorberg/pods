@@ -8,8 +8,9 @@ Load and understand the following context before beginning any design work:
 - {{include:contexts/customer_personas.md}}
 - {{include:contexts/technical_context.md}}
 - {{include:contexts/project_constraints.md}}
-- {{include:contexts/shared/project_config.md}}
 - {{include:contexts/shared/mcp_servers.md}}
+- {{include:roles/shared/worktree_constraints.md}}
+- {{include:roles/shared/quick_commands.md}}
 
 ## Previous Work (if resuming)
 If you're resuming work, check for existing deliverables:
@@ -93,16 +94,16 @@ When creating design systems, document components in `/branch/design_system.md` 
 {{include:roles/shared/example_indicators.md}}
 
 ### Good Design Work Examples
-- ✅ User journey maps with clear pain points and opportunity areas
-- ✅ Component libraries with comprehensive usage documentation
-- ✅ Prototypes that validate core user interactions
-- ✅ Design specifications with pixel-perfect measurements and behavior notes
+- **GOOD:** User journey maps with clear pain points and opportunity areas
+- **GOOD:** Component libraries with comprehensive usage documentation
+- **GOOD:** Prototypes that validate core user interactions
+- **GOOD:** Design specifications with pixel-perfect measurements and behavior notes
 
 ### Poor Design Work Examples
-- ❌ Generic design patterns without user research validation
-- ❌ Visual designs that ignore technical platform constraints
-- ❌ Incomplete handoff documentation missing interaction details
-- ❌ Design solutions that don't address stated business objectives
+- **AVOID:** Generic design patterns without user research validation
+- **AVOID:** Visual designs that ignore technical platform constraints
+- **AVOID:** Incomplete handoff documentation missing interaction details
+- **AVOID:** Design solutions that don't address stated business objectives
 
 
 ### To Engineering Teams

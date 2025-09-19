@@ -27,69 +27,41 @@ handle_git_commands() {
 
             local tree_name="$2"
 
-            # Check if being sourced (hybrid solution)
-            if [[ "${BASH_SOURCE[0]}" != "${0}" ]] || [[ -n "$BASH_SOURCE" && "${BASH_SOURCE[0]}" == *"process substitution"* ]]; then
-                # Being sourced - can change directory
-                echo "🌳 Creating git worktree: $tree_name"
+            echo "🌳 Creating git worktree: $tree_name"
 
-                if git worktree add "../${tree_name}" HEAD 2>/dev/null; then
-                    echo "✅ Worktree created at ../${tree_name}"
-                    echo "📁 Switching to worktree..."
+            if git worktree add "../${tree_name}" HEAD 2>/dev/null; then
+                echo "✅ Worktree created at ../${tree_name}"
 
-                    # Change directory in current shell
-                    cd "../${tree_name}"
+                # Copy all .env files from original directory to worktree
+                echo "📄 Copying .env files..."
+                local env_count=0
+                while IFS= read -r -d '' env_file; do
+                    local relative_path="${env_file#../}"
+                    local target_dir="../${tree_name}/$(dirname "$relative_path")"
+                    local target_file="../${tree_name}/$relative_path"
 
-                    # Create branch with same name
-                    git checkout -b "$tree_name" 2>/dev/null || echo "Branch $tree_name already exists"
+                    # Create target directory if it doesn't exist
+                    mkdir -p "$target_dir"
 
-                    echo "🚀 Ready to work on feature: $tree_name"
-                    echo "📁 Current directory: $(pwd)"
-                    echo "💡 PODs is available at: pods/bin/pods"
+                    # Copy the .env file
+                    cp "$env_file" "$target_file"
+                    echo "  ✅ Copied: $relative_path"
+                    ((env_count++))
+                done < <(find .. -path "../${tree_name}" -prune -o -name ".env*" -type f -print0 2>/dev/null)
+
+                if [ $env_count -eq 0 ]; then
+                    echo "  📝 No .env files found to copy"
                 else
-                    echo "❌ Failed to create worktree. Check that you're in a git repository."
-                    return 1
+                    echo "  📊 Copied $env_count .env file(s)"
                 fi
+
+                echo ""
+                echo "📝 To switch to the worktree, run:"
+                echo "   cd ../$tree_name"
+                echo "   git checkout -b $tree_name"
             else
-                # Being executed - provide instructions
-                echo "🌳 Creating git worktree: $tree_name"
-
-                if git worktree add "../${tree_name}" HEAD 2>/dev/null; then
-                    echo "✅ Worktree created at ../${tree_name}"
-
-                    # Copy all .env files from original directory to worktree
-                    echo "📄 Copying .env files..."
-                    local env_count=0
-                    while IFS= read -r -d '' env_file; do
-                        local relative_path="${env_file#../}"
-                        local target_dir="../${tree_name}/$(dirname "$relative_path")"
-                        local target_file="../${tree_name}/$relative_path"
-
-                        # Create target directory if it doesn't exist
-                        mkdir -p "$target_dir"
-
-                        # Copy the .env file
-                        cp "$env_file" "$target_file"
-                        echo "  ✅ Copied: $relative_path"
-                        ((env_count++))
-                    done < <(find .. -path "../${tree_name}" -prune -o -name ".env*" -type f -print0 2>/dev/null)
-
-                    if [ $env_count -eq 0 ]; then
-                        echo "  📝 No .env files found to copy"
-                    else
-                        echo "  📊 Copied $env_count .env file(s)"
-                    fi
-
-                    echo ""
-                    echo "📝 To switch to the worktree, run:"
-                    echo "   source <(pods g tree $tree_name)"
-                    echo ""
-                    echo "Or manually:"
-                    echo "   cd ../$tree_name"
-                    echo "   git checkout -b $tree_name"
-                else
-                    echo "❌ Failed to create worktree. Check that you're in a git repository."
-                    exit 1
-                fi
+                echo "❌ Failed to create worktree. Check that you're in a git repository."
+                exit 1
             fi
             ;;
         *)

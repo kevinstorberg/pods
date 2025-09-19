@@ -7,56 +7,52 @@ get_ai_assistant() {
     local role_name="$1"
     local config_file="${SCRIPT_DIR}/config/assistants.json"
 
-    if [ ! -f "$config_file" ]; then
-        echo "Error: Config file not found at $config_file"
-        exit 1
-    fi
-
     if ! command -v node &> /dev/null; then
         echo "Error: Node.js required to parse JSONC config file"
         echo "Please install Node.js: https://nodejs.org/"
         exit 1
     fi
 
-    # Check if jsonc-parser is installed
-    if [ ! -d "${SCRIPT_DIR}/node_modules" ]; then
-        echo "Installing dependencies..."
-        cd "$SCRIPT_DIR" && npm install > /dev/null 2>&1
+    if [ ! -f "$config_file" ]; then
+        echo "Error: Config file not found at $config_file"
+        exit 1
     fi
 
-    # Parse JSONC configuration
-    local config_result
-    config_result=$(node -e "
+    if [ ! -d "${SCRIPT_DIR}/node_modules" ]; then
+        echo "Installing dependencies..."
+        cd "$SCRIPT_DIR" && npm install
+    fi
+
+    # Parse JSONC configuration and get the assistant
+    local assistant
+    assistant=$(node -e "
         const fs = require('fs');
         const { parse } = require('jsonc-parser');
         try {
             const content = fs.readFileSync('$config_file', 'utf8');
             const config = parse(content);
+            const roleAssistant = config.roles && config.roles['$role_name'];
             const defaultAssistant = config.default || 'claude';
-            const roleAssistant = config.roles && config.roles['$role_name'] || '';
-            console.log(JSON.stringify({default: defaultAssistant, role: roleAssistant}));
-        } catch (error) {
-            console.log(JSON.stringify({error: error.message}));
-        }
-    " 2>/dev/null)
 
-    # Check for parsing errors
-    if echo "$config_result" | grep -q '"error"'; then
-        echo "Error parsing config file: $config_file"
+            if (roleAssistant) {
+                console.error('Using role-specific AI assistant: ' + roleAssistant);
+                console.log(roleAssistant);
+            } else {
+                console.error('Using default AI assistant: ' + defaultAssistant);
+                console.log(defaultAssistant);
+            }
+        } catch (error) {
+            console.error('Error parsing config file: ' + error.message);
+            process.exit(1);
+        }
+    " 2>&1)
+
+    # Check if node command succeeded
+    if [ $? -ne 0 ]; then
+        echo "$assistant"  # This will contain the error message
         exit 1
     fi
 
-    # Extract values
-    local default_assistant role_assistant
-    default_assistant=$(echo "$config_result" | node -e "console.log(JSON.parse(require('fs').readFileSync(0, 'utf8')).default)")
-    role_assistant=$(echo "$config_result" | node -e "console.log(JSON.parse(require('fs').readFileSync(0, 'utf8')).role)")
-
-    # Return appropriate assistant
-    if [ -n "$role_assistant" ] && [ "$role_assistant" != "null" ] && [ "$role_assistant" != "" ]; then
-        echo "Using role-specific AI assistant: $role_assistant" >&2
-        echo "$role_assistant"
-    else
-        echo "Using default AI assistant: $default_assistant" >&2
-        echo "$default_assistant"
-    fi
+    # Return the assistant (last line of output)
+    echo "$assistant" | tail -n1
 }

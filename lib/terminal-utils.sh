@@ -15,13 +15,10 @@ open_new_tab_and_launch() {
         command_to_run="${command_to_run} && export TEST_RESULT_FILE='$TEST_RESULT_FILE'"
     fi
 
+    # Add the pods command with optional assistant override
     command_to_run="${command_to_run} && bin/pods $role"
     if [[ -n "$assistant_override" ]]; then
-        command_to_run="cd '$SCRIPT_DIR'"
-        if [[ -n "$TEST_RESULT_FILE" ]]; then
-            command_to_run="${command_to_run} && export TEST_RESULT_FILE='$TEST_RESULT_FILE'"
-        fi
-        command_to_run="${command_to_run} && bin/pods $role --a $assistant_override"
+        command_to_run="${command_to_run} --a $assistant_override"
     fi
 
     echo "🆕 Opening new tab for role: $role"
@@ -66,10 +63,6 @@ open_new_tab_and_launch() {
     else
         echo "❌ Unable to detect supported terminal application"
         echo "Supported terminals: iTerm2, Terminal.app, GNOME Terminal, Konsole"
-        echo "Falling back to current session..."
-        echo ""
-        # Fall back to current session
-        new_session=false
-        launch_role "$role" $([ -n "$assistant_override" ] && echo "--a $assistant_override")
+        exit 1
     fi
 }

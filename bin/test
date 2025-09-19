@@ -11,6 +11,10 @@ echo "🧪 Running PODs Test Suite"
 echo "========================="
 echo ""
 
+# Check dependencies first
+"$SCRIPT_DIR/tests/test-dependencies.sh"
+echo ""
+
 # Run role loading tests
 echo "Starting role loading tests..."
 "$SCRIPT_DIR/tests/test-roles.sh"

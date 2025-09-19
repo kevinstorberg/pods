@@ -6,15 +6,8 @@
 
 set -e
 
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-PASSED=0
-FAILED=0
-
-# Colors for output
-GREEN='\033[0;32m'
-RED='\033[0;31m'
-BLUE='\033[0;34m'
-NC='\033[0m' # No Color
+# Source shared test utilities
+source "$(dirname "${BASH_SOURCE[0]}")/shared.sh"
 
 echo "🧪 PODs Role Loading Tests"
 echo "=========================="
@@ -35,7 +28,7 @@ test_role() {
     # Check for timeout
     if [[ "$output" == *"TIMEOUT_ERROR"* ]]; then
         echo -e "  ${RED}❌ TIMEOUT${NC} - Role took too long to respond"
-        ((FAILED++))
+        increment_failed
         return
     fi
 
@@ -43,7 +36,7 @@ test_role() {
     if [[ "$output" == *"Error:"* ]] || [[ "$output" == *"error:"* ]]; then
         echo -e "  ${RED}❌ ERROR${NC} - Role failed to launch"
         echo "     Output: ${output:0:100}..."
-        ((FAILED++))
+        increment_failed
         return
     fi
 
@@ -65,7 +58,7 @@ test_role() {
         echo -e "  ${GREEN}✅ Role identification${NC}"
     else
         echo -e "  ${RED}❌ Role identification${NC} - Missing or incorrect ROLE field"
-        ((FAILED++))
+        increment_failed
         return
     fi
 
@@ -82,12 +75,12 @@ test_role() {
         done
 
         if [ "$deliverables_valid" = false ]; then
-            ((FAILED++))
+            increment_failed
             return
         fi
     else
         echo -e "  ${RED}❌ DELIVERABLES field missing${NC}"
-        ((FAILED++))
+        increment_failed
         return
     fi
 
@@ -104,12 +97,12 @@ test_role() {
         done
 
         if [ "$inputs_valid" = false ]; then
-            ((FAILED++))
+            increment_failed
             return
         fi
     else
         echo -e "  ${RED}❌ INPUTS field missing${NC}"
-        ((FAILED++))
+        increment_failed
         return
     fi
 
@@ -118,7 +111,7 @@ test_role() {
         echo -e "  ${GREEN}✅ Project directory configured${NC}"
     else
         echo -e "  ${RED}❌ PROJECT_DIRECTORY field missing${NC}"
-        ((FAILED++))
+        increment_failed
         return
     fi
 
@@ -127,7 +120,7 @@ test_role() {
         echo -e "  ${GREEN}✅ MCP servers field present${NC}"
     else
         echo -e "  ${RED}❌ MCP_SERVERS field missing${NC}"
-        ((FAILED++))
+        increment_failed
         return
     fi
 
@@ -136,7 +129,7 @@ test_role() {
         echo -e "  ${GREEN}✅ AI assistant identified${NC}"
     else
         echo -e "  ${RED}❌ AI_ASSISTANT field missing${NC}"
-        ((FAILED++))
+        increment_failed
         return
     fi
 
@@ -145,12 +138,12 @@ test_role() {
         echo -e "  ${GREEN}✅ Status ready${NC}"
     else
         echo -e "  ${RED}❌ STATUS not ready${NC}"
-        ((FAILED++))
+        increment_failed
         return
     fi
 
     echo -e "  ${GREEN}✅ $role_name role test PASSED${NC}"
-    ((PASSED++))
+    increment_passed
     echo ""
 }
 
@@ -193,13 +186,4 @@ test_role "qe" "qa_report.md test_strategy.md" "requirements_doc.md architecture
 test_role "de" "design_task.md design_system.md" "requirements_doc.md user_stories.md"  # designer
 
 # Summary
-echo "=========================="
-echo -e "Test Results: ${GREEN}$PASSED passed${NC}, ${RED}$FAILED failed${NC}"
-
-if [ $FAILED -eq 0 ]; then
-    echo "🎉 All role loading tests passed!"
-    exit 0
-else
-    echo "💥 Some tests failed. Check role configurations."
-    exit 1
-fi
+print_test_summary "role loading tests"
