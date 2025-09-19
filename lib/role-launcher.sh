@@ -190,6 +190,7 @@ BRANCH: ${branch_name:-main}
 WORKTREE: ${worktree_path:-none}
 MCP_SERVERS: [list any MCP servers you have available, or 'none']
 AI_ASSISTANT: ${ai_editor}
+QUICK_COMMANDS: [list the quick commands you are monitoring for from your role definition]
 STATUS: ready
 
 Do not include any other text or explanation - just this structured metadata."

@@ -133,7 +133,18 @@ test_role() {
         return
     fi
 
-    # Test 7: STATUS field shows ready
+    # Test 7: QUICK_COMMANDS field exists (except for admin)
+    if [[ "$role_name" != "admin" ]] && [[ "$role_name" != "ad" ]]; then
+        if [[ "$output" =~ QUICK_COMMANDS: ]]; then
+            echo -e "  ${GREEN}✅ Quick commands acknowledged${NC}"
+        else
+            echo -e "  ${RED}❌ QUICK_COMMANDS field missing${NC}"
+            increment_failed
+            return
+        fi
+    fi
+
+    # Test 8: STATUS field shows ready
     if [[ "$output" =~ STATUS:.*ready ]]; then
         echo -e "  ${GREEN}✅ Status ready${NC}"
     else

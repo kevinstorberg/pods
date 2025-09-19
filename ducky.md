@@ -1,4 +1,3 @@
-<!-- Review the instructions in `ducky.md`. Take your time to think deeply about them. -->
 # Ducky
 
 ## Context

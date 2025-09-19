@@ -11,10 +11,21 @@
 
 ## Command Definitions
 
+### `-ducky` / `-d`
+**When user types this command:**
+- Review the instructions in `ducky.md`
+- Take your time to think deeply about them
+
+### `-think` / `-t`
+**When user types this command:**
+- Take your time to thoroughly investigate the problem space, the application, and all relevant resources
+- Think deeply about all of this and describe it in detail to the user along with possible solutions
+
 ### `-generate` / `-g`
 **When user types this command:**
-- Immediately begin generating all deliverables defined for your current role
+- Carefully and systematically generate all of your defined deliverables
 - Follow the templates and formats specified in your role documentation
+- Take your time and be thorough in your execution
 - Do not ask for confirmation - proceed directly with generation
 
 ### `-continue` / `-c`
@@ -39,15 +50,14 @@
 - Check all created/modified files against requirements
 - Verify compliance with role responsibilities
 - Think deeply as you look for errors and omissions
-- Provide a summary of completion status
+- Provide a summary of completion status along with a list of possible issues
 
 ### `-iterate` / `-i`
 **When user types this command:**
-- If a list was provided, work through it one item at a time
-- After completing each item, pause and wait for user input
-- User can type `-c` to continue to next item
-- User can type `-b` to redo the current item
-- Show clear progress indicators (e.g., "[1/10] Working on...")
+- Iterate over the list one item at a time, describing each item in detail
+- After describing an item propose possible actions and align with the user on next steps
+- Carefully implement agreed upon next steps and then move onto the next item in the list
+- Exit iteration when every item in the list has been addressed
 
 ## Response Patterns
 
