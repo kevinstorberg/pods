@@ -163,7 +163,7 @@ bin/pods pm --t --a claude    # New tab + assistant override
 
 # Git workflow integration
 bin/pods g tree feature-auth  # Create worktree + branch
-source <(bin/pods g tree auth) # Create worktree + switch directory
+cd ../feature-auth            # Change to new worktree directory
 ```
 
 ### For Existing Projects
@@ -226,11 +226,18 @@ pods/
 │   ├── customer_personas.md
 │   ├── project_constraints.md
 │   └── technical_context.md
+├── lib/                    # Script libraries
+│   ├── config-parser.sh   # JSONC configuration parsing
+│   ├── git-commands.sh    # Git workflow operations
+│   ├── role-launcher.sh   # Role launching with arguments
+│   └── terminal-utils.sh  # Terminal tab management
 ├── roles/                   # AI role definitions
 │   ├── shared/             # Common role components
 │   │   ├── example_indicators.md
 │   │   ├── quality_standards.md
-│   │   └── system_assessment_process.md
+│   │   ├── quick_commands.md
+│   │   ├── system_assessment_process.md
+│   │   └── worktree_constraints.md
 │   ├── admin.md
 │   ├── architect.md
 │   ├── designer.md
@@ -251,16 +258,12 @@ pods/
 │   ├── test_strategy.md
 │   ├── ticket_template.md
 │   └── user_story.md
-├── lib/                    # Script libraries
-│   ├── config-parser.sh   # JSONC configuration parsing
-│   ├── git-commands.sh    # Git workflow operations
-│   ├── role-launcher.sh   # Role launching with arguments
-│   └── terminal-utils.sh  # Terminal tab management
-└── tests/                 # Test suite
-    ├── shared.sh          # Shared test utilities
-    ├── test-dependencies.sh # Dependency checker
-    ├── test-roles.sh      # Role loading tests
-    └── test-role-args.sh  # Role argument tests
+├── tests/                 # Test suite
+│   ├── shared.sh          # Shared test utilities
+│   ├── test-dependencies.sh # Dependency checker
+│   ├── test-role-args.sh  # Role argument tests
+│   └── test-roles.sh      # Role loading tests
+└── tmp/                    # Temporary workspace for role operations (git-ignored)
 ```
 
 ## 🎨 Key Features
