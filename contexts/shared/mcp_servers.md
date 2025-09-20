@@ -1,7 +1,9 @@
 # MCP Server Configuration
 
 ## Available MCP Servers
-The following MCP servers are configured for this project:
+The configuration below is in JSONC format. Lines starting with // are comments and those servers are NOT available.
+Only uncommented entries are active:
+
 {{include:config/mcp.json}}
 
 ## MCP Tool Usage
