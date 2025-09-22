@@ -2,42 +2,5 @@
 
 # PODs - AI Development Framework
 # Main router script
-
-set -e
-
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-
-if [ $# -eq 0 ]; then
-    echo "Usage: pods <subcommand> [args...]"
-    echo ""
-    echo "Subcommands:"
-    echo "  <role-name>     Launch AI role (admin, pm, ar, em, fe, qe, de)"
-    echo "  g               Git operations (tree, branch, etc.)"
-    echo ""
-    echo "Role arguments:"
-    echo "  --t            Open new terminal tab"
-    echo "  --a assistant  Override AI assistant"
-    echo ""
-    echo "Examples:"
-    echo "  pods pm              # Launch Product Manager"
-    echo "  pods fe --t          # Launch Fullstack Engineer in new tab"
-    echo "  pods ar --a gemini   # Launch Architect with Gemini"
-    echo "  pods g tree auth     # Create git worktree for 'auth' feature"
-    exit 1
-fi
-
-# Source libraries
-source "${SCRIPT_DIR}/lib/role-launcher.sh"
-source "${SCRIPT_DIR}/lib/git-commands.sh"
-source "${SCRIPT_DIR}/lib/terminal-utils.sh"
-
-case "$1" in
-    "g")
-        # Git operations
-        handle_git_commands "${@:2}"
-        ;;
-    *)
-        # Role launching
-        launch_role "$@"
-        ;;
-esac
+exec node "${SCRIPT_DIR}/lib/pods.js" "$@"
