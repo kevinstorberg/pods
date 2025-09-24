@@ -56,6 +56,20 @@ Product Manager → Architect → Engineering Manager → Fullstack Engineer →
 - **Output**: `/branch/design_task.md` and `/branch/design_system.md`
 - **Admin**: Handles project initialization and configuration
 
+## 📄 PDF Generation
+
+PODs can convert all markdown deliverables to professional PDFs for stakeholder review:
+
+```bash
+# Convert all deliverables to PDF
+bin/pods g pdf --a
+
+# Convert specific deliverable
+bin/pods g pdf requirements_doc.md
+
+# PDFs are saved to /tmp directory
+```
+
 ## 🚀 Getting Started
 
 ### For New Projects
@@ -166,9 +180,11 @@ bin/pods fe --t               # Open in new terminal tab
 bin/pods ar --a gemini        # Override AI assistant
 bin/pods pm --t --a codex     # New tab + assistant override
 
-# Git workflow integration
+# Generator commands
 bin/pods g tree feature-auth  # Create worktree + branch
 cd ../feature-auth            # Change to new worktree directory
+bin/pods g pdf --a            # Convert all deliverables to PDF
+bin/pods g pdf requirements_doc.md  # Convert specific file to PDF
 ```
 
 ### For Existing Projects
@@ -232,10 +248,11 @@ pods/
 │   ├── project_constraints.md
 │   └── technical_context.md
 ├── lib/                    # Script libraries
-│   ├── config-parser.sh   # JSONC configuration parsing
-│   ├── git-commands.sh    # Git workflow operations
-│   ├── role-launcher.sh   # Role launching with arguments
-│   └── terminal-utils.sh  # Terminal tab management
+│   ├── config-parser.js   # JSONC configuration parsing
+│   ├── generators.js      # Generator commands (worktrees, PDFs)
+│   ├── pdf.js            # PDF conversion functionality
+│   ├── role-launcher.js   # Role launching with arguments
+│   └── terminal-utils.js  # Terminal tab management
 ├── roles/                   # AI role definitions
 │   ├── shared/             # Common role components
 │   │   ├── example_indicators.md
@@ -287,6 +304,11 @@ pods/
 - **Git-Ignored Generation**: All AI outputs go to `/branch` folder
 - **Simple Workspace**: Clean separation between framework and generated content
 - **Version Control Friendly**: Framework stays clean, generated content stays separate
+
+### Generator Commands
+- **Git Worktrees**: Create isolated feature branches with `pods g tree <name>`
+- **PDF Export**: Convert markdown deliverables to professional PDFs for stakeholders
+- **Extensible System**: Easy to add new generators for different output formats
 
 ## 🤝 Contributing
 

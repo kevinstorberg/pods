@@ -11,7 +11,9 @@
     "test": "bin/pods admin"
   },
   "dependencies": {
-    "jsonc-parser": "^3.2.1"
+    "jsonc-parser": "^3.2.1",
+    "puppeteer": "^21.0.0",
+    "marked": "^9.0.0"
   },
   "devDependencies": {},
   "engines": {
