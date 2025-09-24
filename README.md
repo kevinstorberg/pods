@@ -117,7 +117,7 @@ Example configuration:
 Configure Model Context Protocol servers for enhanced AI capabilities:
 
 ```bash
-# Edit config/mcp.json
+# Edit config/mcp.jsonc
 # Supports JSONC format with comments
 # Uncomment desired servers and add API keys
 ```
@@ -211,10 +211,10 @@ chmod +x bin/pods bin/initialize
 #### 2. Configure for Your Existing Project
 
 ```bash
-# The project.json already points to parent directory (..)
+# The project.jsonc already points to parent directory (..)
 # Configure AI assistants as needed
-# Edit config/assistants.json
-# Edit config/mcp.json (optional)
+# Edit config/assistants.jsonc
+# Edit config/mcp.jsonc (optional)
 ```
 
 #### 3. Analyze Your Existing Codebase
@@ -236,9 +236,9 @@ pods/
 │   └── test               # Test suite runner
 ├── branch/                 # Generated content workspace (git-ignored)
 ├── config/
-│   ├── assistants.json     # AI assistant configuration
-│   ├── mcp.json           # MCP server configuration
-│   └── project.json       # Project directory configuration
+│   ├── assistants.jsonc     # AI assistant configuration
+│   ├── mcp.jsonc           # MCP server configuration
+│   └── project.jsonc      # Project directory configuration
 ├── contexts/               # Project context templates
 │   ├── shared/            # Framework components
 │   │   ├── mcp_servers.md
@@ -334,8 +334,8 @@ cd pods
 npm install
 # Make scripts executable
 chmod +x bin/pods bin/initialize
-# Configure assistants (edit config/assistants.json as needed)
-# Configure MCP servers (edit config/mcp.json as needed)
+# Configure assistants (edit config/assistants.jsonc as needed)
+# Configure MCP servers (edit config/mcp.jsonc as needed)
 # Test the framework
 bin/test
 ```

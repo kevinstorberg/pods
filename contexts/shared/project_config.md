@@ -1,7 +1,7 @@
 # Project Configuration
 
 ## Project Directory Settings
-{{include:config/project.json}}
+{{include:config/project.jsonc}}
 
 ## Usage
 All roles should analyze and work on files in the configured project directory, not the PODs framework directory itself.

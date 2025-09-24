@@ -4,7 +4,7 @@
 The configuration below is in JSONC format. Lines starting with // are comments and those servers are NOT available.
 Only uncommented entries are active:
 
-{{include:config/mcp.json}}
+{{include:config/mcp.jsonc}}
 
 ## MCP Tool Usage
 **Automatically use any configured MCP servers** that are relevant to your role:

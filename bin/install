@@ -1,0 +1,51 @@
+#!/bin/bash
+
+# PODs Install Script
+# Installs both Node.js and Python dependencies
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+
+echo "🚀 PODs Installation"
+echo "===================="
+echo ""
+
+# Install Node.js dependencies
+echo "📦 Installing Node.js dependencies..."
+cd "$SCRIPT_DIR"
+npm install
+
+if [ $? -ne 0 ]; then
+    echo "❌ Failed to install Node.js dependencies"
+    exit 1
+fi
+
+echo "✅ Node.js dependencies installed"
+echo ""
+
+# Check if Python dependencies exist
+if [ -f "$SCRIPT_DIR/services/requirements.txt" ]; then
+    echo "🐍 Installing Python dependencies..."
+    pip install -r "$SCRIPT_DIR/services/requirements.txt"
+
+    if [ $? -ne 0 ]; then
+        echo "❌ Failed to install Python dependencies"
+        echo ""
+        echo "💡 Try using a virtual environment:"
+        echo "   python3 -m venv venv"
+        echo "   source venv/bin/activate"
+        echo "   pip install -r services/requirements.txt"
+        exit 1
+    fi
+
+    echo "✅ Python dependencies installed"
+else
+    echo "📝 No Python dependencies found (services/requirements.txt missing)"
+fi
+
+echo ""
+echo "✨ Installation complete!"
+echo ""
+echo "Next steps:"
+echo "  1. Create ducky.md with your requirements"
+echo "  2. Run: python services/sprint.py"
+echo "  3. Or use individual roles: bin/pods pm"
