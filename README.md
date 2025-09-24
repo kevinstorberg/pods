@@ -79,6 +79,11 @@ Edit the configuration file to set your preferred AI coding tools:
 # Edit config/assistants.json
 ```
 
+Supported AI assistants:
+- `claude` - Claude AI coding assistant
+- `codex` - Codex AI coding assistant
+- `gemini` - Gemini AI coding assistant
+
 Example configuration:
 ```javascript
 {
@@ -87,7 +92,7 @@ Example configuration:
 
   // Role-specific overrides (uncomment as needed)
   "roles": {
-    // "fullstack_engineer": "gemini",
+    // "fullstack_engineer": "codex",
     // "engineering_manager": "gemini"
   }
 }
@@ -159,7 +164,7 @@ bin/pods pm                    # Abbreviation
 # Advanced options
 bin/pods fe --t               # Open in new terminal tab
 bin/pods ar --a gemini        # Override AI assistant
-bin/pods pm --t --a claude    # New tab + assistant override
+bin/pods pm --t --a codex     # New tab + assistant override
 
 # Git workflow integration
 bin/pods g tree feature-auth  # Create worktree + branch

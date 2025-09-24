@@ -3,7 +3,7 @@
   // Configure which AI coding assistant to use for each role
 
   // Supported AI assistants
-  "assistants": ["claude", "gemini"],
+  "assistants": ["claude", "codex", "gemini"],
 
   // Default AI assistant (fallback for all roles)
   "default": "claude",
