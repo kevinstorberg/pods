@@ -76,7 +76,7 @@ npm install
 Edit the configuration file to set your preferred AI coding tools:
 
 ```bash
-# Edit config/assistants.json
+# Edit config/assistants.jsonc
 ```
 
 Supported AI assistants:
