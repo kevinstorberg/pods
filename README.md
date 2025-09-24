@@ -211,7 +211,7 @@ chmod +x bin/pods bin/initialize
 #### 2. Configure for Your Existing Project
 
 ```bash
-# The project.json already points to parent directory (..)
+# The project.jsonc already points to parent directory (..)
 # Configure AI assistants as needed
 # Edit config/assistants.json
 # Edit config/mcp.json (optional)
@@ -238,7 +238,7 @@ pods/
 ├── config/
 │   ├── assistants.json     # AI assistant configuration
 │   ├── mcp.json           # MCP server configuration
-│   └── project.json       # Project directory configuration
+│   └── project.jsonc      # Project directory configuration
 ├── contexts/               # Project context templates
 │   ├── shared/            # Framework components
 │   │   ├── mcp_servers.md

@@ -12,6 +12,7 @@ const {
 } = require('./shared.js');
 
 const os = require('os');
+const path = require('path');
 
 function checkDependencies() {
     console.log('🔍 Checking test dependencies...');
@@ -58,6 +59,36 @@ function checkDependencies() {
         console.log('  npm is recommended for package management');
         console.log('  Usually comes with Node.js installation');
         console.log('');
+    }
+
+    // Check for Puppeteer (required for PDF generation)
+    try {
+        require.resolve('puppeteer', { paths: [path.join(__dirname, '..')] });
+        console.log(`${colors.GREEN}✅ puppeteer${colors.NC} - package installed (PDF generation)`);
+        incrementPassed();
+    } catch (e) {
+        console.log(`${colors.RED}❌ puppeteer${colors.NC} - package not found`);
+        console.log('');
+        console.log('  Puppeteer is required for PDF generation');
+        console.log('  Installation: npm install');
+        console.log('');
+        missingDeps++;
+        incrementFailed();
+    }
+
+    // Check for marked (required for markdown to HTML conversion)
+    try {
+        require.resolve('marked', { paths: [path.join(__dirname, '..')] });
+        console.log(`${colors.GREEN}✅ marked${colors.NC} - package installed (markdown parsing)`);
+        incrementPassed();
+    } catch (e) {
+        console.log(`${colors.RED}❌ marked${colors.NC} - package not found`);
+        console.log('');
+        console.log('  Marked is required for PDF generation');
+        console.log('  Installation: npm install');
+        console.log('');
+        missingDeps++;
+        incrementFailed();
     }
 
     // Platform-specific checks

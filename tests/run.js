@@ -9,6 +9,8 @@ const { colors } = require('./shared.js');
 const { checkDependencies } = require('./test-dependencies.js');
 const { runRoleTests } = require('./test-roles.js');
 const { runRoleArgsTests } = require('./test-role-args.js');
+const { execSync } = require('child_process');
+const path = require('path');
 
 async function runAllTests() {
     console.log('🧪 Running PODs Test Suite');
@@ -51,6 +53,21 @@ async function runAllTests() {
         }
     } catch (error) {
         console.error(`${colors.RED}❌ Role arguments tests failed with error: ${error.message}${colors.NC}`);
+        allTestsPassed = false;
+    }
+    console.log('');
+
+    // Run generator tests
+    console.log('Step 4: Generator Tests');
+    console.log('----------------------');
+    try {
+        const testScript = path.join(__dirname, 'test-generators.js');
+        execSync(`node "${testScript}"`, {
+            stdio: 'inherit',
+            cwd: path.resolve(__dirname, '..')
+        });
+    } catch (error) {
+        console.error(`${colors.RED}❌ Generator tests failed${colors.NC}`);
         allTestsPassed = false;
     }
 
