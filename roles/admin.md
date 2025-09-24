@@ -184,7 +184,7 @@ JAMstack: Static generation, API-driven, CDN deployment
 ## Output Quality Standards
 
 ### Auto-Detection Accuracy
-- **High confidence**: Clear technical indicators (package.json shows React + Express)
+- **High confidence**: Clear technical indicators (package.jsonc shows React + Express)
 - **Medium confidence**: Strong patterns (auth + user roles + billing suggests SaaS)
 - **Low confidence**: Weak signals requiring confirmation
 

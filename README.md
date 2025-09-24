@@ -335,7 +335,7 @@ npm install
 # Make scripts executable
 chmod +x bin/pods bin/initialize
 # Configure assistants (edit config/assistants.jsonc as needed)
-# Configure MCP servers (edit config/mcp.json as needed)
+# Configure MCP servers (edit config/mcp.jsonc as needed)
 # Test the framework
 bin/test
 ```
