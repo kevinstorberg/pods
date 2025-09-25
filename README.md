@@ -18,7 +18,7 @@ PODs transforms how software is built by providing a structured framework where 
 PODs uses a sequential workflow where each role builds upon the previous role's output:
 
 ```
-Product Manager → Architect → Engineering Manager → Fullstack Engineer → QA Engineer
+Product Manager → Architect → Engineering Manager → Fullstack Engineer → DevOps Engineer → QA Engineer
 ```
 
 #### 1. **Product Manager**
@@ -44,7 +44,13 @@ Product Manager → Architect → Engineering Manager → Fullstack Engineer →
 - **Input**: `/branch/tickets.md` and `/branch/implementation_plan.md` from Engineering Manager
 - **Output**: Working code implementation
 
-#### 5. **QA Engineer**
+#### 5. **DevOps Engineer**
+- Implements deployment infrastructure, CI/CD automation, and operational systems
+- Creates containerization, monitoring, and deployment configurations
+- **Input**: `/branch/architecture_spec.md`, `/branch/implementation_plan.md`, and code implementation
+- **Output**: `/branch/deployment_setup_guide.md` + Working infrastructure (Dockerfiles, CI/CD pipelines, monitoring)
+
+#### 6. **QA Engineer**
 - Reviews implementation against all specifications and requirements
 - Validates quality, tests functionality, and provides final approval
 - **Input**: Code implementation + all previous deliverables from upstream roles
@@ -52,9 +58,13 @@ Product Manager → Architect → Engineering Manager → Fullstack Engineer →
 
 ### Supporting Roles
 
-- **Designer**: Creates user experience designs and design systems
-- **Output**: `/branch/design_task.md` and `/branch/design_system.md`
 - **Admin**: Handles project initialization and configuration
+- **Analyst**: Conducts comprehensive system analysis and technical audits
+  - **Output**: `/branch/system_analysis.md`
+- **Designer**: Creates user experience designs and design systems
+  - **Output**: `/branch/design_task.md` and `/branch/design_system.md`
+- **DevOps Engineer**: Implements deployment infrastructure, CI/CD automation, and operational systems
+  - **Output**: `/branch/deployment_setup_guide.md` + Working infrastructure (Dockerfiles, CI/CD pipelines, monitoring)
 
 ## 📄 PDF Generation
 
