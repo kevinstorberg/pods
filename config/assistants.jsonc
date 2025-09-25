@@ -11,11 +11,13 @@
   // Role-specific AI assistants (uncomment and customize as needed)
   "roles": {
     // "admin": "claude",
-    // "product_manager": "claude",
+    // "analyst": "claude",
     // "architect": "claude",
+    // "designer": "claude",
+    // "devops_engineer": "claude",
     // "engineering_manager": "gemini",
     // "fullstack_engineer": "claude",
-    // "qa_engineer": "claude",
-    // "designer": "claude"
+    // "product_manager": "claude",
+    // "qa_engineer": "claude"
   }
 }

@@ -15,6 +15,7 @@ const {
     printTestSummary,
     SCRIPT_DIR
 } = require('./shared.js');
+const { getRoleFullname } = require('../lib/role-mappings.js');
 
 async function testRole(roleName, expectedDeliverables, mustIncludeInputs) {
     console.log(`${colors.BLUE}Testing role: ${roleName}${colors.NC}`);
@@ -52,17 +53,7 @@ async function testRole(roleName, expectedDeliverables, mustIncludeInputs) {
         }
 
         // Convert abbreviation to full name for role identification test
-        const roleNameMap = {
-            'ad': 'admin',
-            'pm': 'product_manager',
-            'ar': 'architect',
-            'em': 'engineering_manager',
-            'fe': 'fullstack_engineer',
-            'qe': 'qa_engineer',
-            'de': 'designer'
-        };
-
-        const expectedRoleName = roleNameMap[roleName] || roleName;
+        const expectedRoleName = getRoleFullname(roleName);
 
         // Test 1: Role field exists and matches
         const roleRegex = new RegExp(`ROLE:.*${expectedRoleName}`);
@@ -151,16 +142,34 @@ async function runRoleTests() {
 
     resetTestCounters();
 
-    // Test Product Manager role
-    await testRole('pm',
-        ['requirements_doc.md', 'user_stories.md'],
-        ['business_context', 'customer_personas']
+    // Test Admin role
+    await testRole('admin',
+        [],  // Admin configures context, no specific deliverables
+        []   // Admin doesn't require specific inputs
+    );
+
+    // Test Analyst role
+    await testRole('an',
+        ['system_analysis.md'],
+        ['technical_context', 'business_context']
     );
 
     // Test Architect role
     await testRole('ar',
         ['architecture_spec.md'],
         ['requirements_doc.md', 'technical_context']
+    );
+
+    // Test Designer role
+    await testRole('de',
+        ['design_task.md', 'design_system.md'],
+        ['requirements_doc.md', 'user_stories.md']
+    );
+
+    // Test DevOps Engineer role
+    await testRole('dv',
+        ['deployment_setup_guide.md'],
+        ['architecture_spec.md', 'implementation_plan.md']
     );
 
     // Test Engineering Manager role
@@ -175,22 +184,16 @@ async function runRoleTests() {
         ['tickets.md', 'implementation_plan.md']
     );
 
+    // Test Product Manager role
+    await testRole('pm',
+        ['requirements_doc.md', 'user_stories.md'],
+        ['business_context', 'customer_personas']
+    );
+
     // Test QA Engineer role
     await testRole('qe',
         ['qa_report.md'],
         ['requirements_doc.md', 'implementation']
-    );
-
-    // Test Admin role
-    await testRole('admin',
-        [],  // Admin configures context, no specific deliverables
-        []   // Admin doesn't require specific inputs
-    );
-
-    // Test Designer role (if exists)
-    await testRole('de',
-        ['design_task.md', 'design_system.md'],
-        ['requirements_doc.md', 'user_stories.md']
     );
 
     const success = printTestSummary('Role Loading Tests');
